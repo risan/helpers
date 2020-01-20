@@ -1,0 +1,41 @@
+{
+  "name": "@risan/helpers",
+  "version": "1.0.0-alpha.1",
+  "description": "Variety of helper functions.",
+  "license": "MIT",
+  "author": {
+    "name": "Risan Bagja Pradana",
+    "email": "risanbagja@gmail.com",
+    "url": "https://risanb.com"
+  },
+  "homepage": "https://github.com/risan/helpers#readme",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/risan/helpers.git"
+  },
+  "bugs": {
+    "url": "https://github.com/risan/is-empty/issues"
+  },
+  "main": "dist/helpers.cjs.js",
+  "browser": "dist/helpers.js",
+  "module": "dist/helpers.esm.js",
+  "engines": {
+    "node": ">=8"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-config-prettier": "^6.9.0",
+    "eslint-plugin-import": "^2.20.0",
+    "eslint-plugin-prettier": "^3.1.2",
+    "prettier": "^1.19.1",
+    "rollup": "^1.29.0",
+    "rollup-plugin-terser": "^5.2.0"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "lint": "eslint ./",
+    "lint-fix": "eslint ./ --fix"
+  }
+}
