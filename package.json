@@ -22,8 +22,15 @@
   "engines": {
     "node": ">=8"
   },
-  "dependencies": {},
+  "dependencies": {
+    "core-js": "3",
+    "regenerator-runtime": "^0.13.3"
+  },
   "devDependencies": {
+    "@babel/core": "^7.8.3",
+    "@babel/preset-env": "^7.8.3",
+    "@rollup/plugin-commonjs": "^11.0.1",
+    "@rollup/plugin-node-resolve": "^7.0.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.0.0",
     "eslint-config-prettier": "^6.9.0",
@@ -31,11 +38,17 @@
     "eslint-plugin-prettier": "^3.1.2",
     "prettier": "^1.19.1",
     "rollup": "^1.29.0",
+    "rollup-plugin-babel": "^4.3.3",
     "rollup-plugin-terser": "^5.2.0"
   },
   "scripts": {
     "build": "rollup -c",
     "lint": "eslint ./",
     "lint-fix": "eslint ./ --fix"
-  }
+  },
+  "browserslist": [
+    "> 0.5%",
+    "not ie 11",
+    "maintained node versions"
+  ]
 }

@@ -1,3 +1,6 @@
+import babel from 'rollup-plugin-babel';
+import commonjs from '@rollup/plugin-commonjs';
+import resolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
 
 module.exports = {
@@ -22,5 +25,12 @@ module.exports = {
       format: 'iife',
       plugins: [terser()],
     },
+  ],
+  plugins: [
+    resolve(),
+    commonjs(),
+    babel({
+      exclude: 'node_modules/**',
+    }),
   ],
 };
