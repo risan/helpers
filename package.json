@@ -20,10 +20,11 @@
   "browser": "dist/helpers.js",
   "module": "dist/helpers.esm.js",
   "engines": {
-    "node": ">=8"
+    "node": ">=10"
   },
   "dependencies": {
     "core-js": "3",
+    "lodash": "^4.17.0",
     "regenerator-runtime": "^0.13.3"
   },
   "devDependencies": {
@@ -36,6 +37,7 @@
     "eslint-config-prettier": "^6.9.0",
     "eslint-plugin-import": "^2.20.0",
     "eslint-plugin-prettier": "^3.1.2",
+    "jest": "^25.1.0",
     "prettier": "^1.19.1",
     "rollup": "^1.29.0",
     "rollup-plugin-babel": "^4.3.3",
@@ -44,7 +46,8 @@
   "scripts": {
     "build": "rollup -c",
     "lint": "eslint ./",
-    "lint-fix": "eslint ./ --fix"
+    "lint-fix": "eslint ./ --fix",
+    "test": "jest"
   },
   "browserslist": [
     "> 0.5%",
