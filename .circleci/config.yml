@@ -1,4 +1,6 @@
 version: 2.1
+orbs:
+  codecov: codecov/codecov@1.0.2
 jobs:
   build:
     working_directory: ~/repo
@@ -14,3 +16,5 @@ jobs:
           paths:
             - ~/.cache/yarn
       - run: yarn test
+      - codecov/upload:
+          file: coverage
