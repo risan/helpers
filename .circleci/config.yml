@@ -14,5 +14,6 @@ jobs:
           paths:
             - ~/.cache/yarn
       - run: yarn test
-      - store_test_results:
+      - store_artifacts:
           path: test-results.xml
+          prefix: tests
