@@ -17,4 +17,4 @@ jobs:
             - ~/.cache/yarn
       - run: yarn test
       - codecov/upload:
-          file: coverage
+          file: coverage/coverage-final.json
