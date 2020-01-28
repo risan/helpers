@@ -205,3 +205,9 @@ export const getRatio = (value, total) => {
 
   return valueParsed / totalParsed;
 };
+
+export const formatPercentFrom = (value, total, fractionDigits = 2) => {
+  const ratio = getRatio(value, total);
+
+  return formatPercent(ratio, fractionDigits);
+};
