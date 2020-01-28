@@ -79,3 +79,23 @@ export const parseNumber = (value, fallbackValue = null) => {
 
   return Number.isNaN(valueParsed) ? fallbackValue : valueParsed;
 };
+
+export const formatCurrency = (
+  value,
+  fractionDigits = 2,
+  { locales = 'en-US', currencyCode = 'USD', ...options } = {}
+) => {
+  const valueParsed = parseNumber(value);
+
+  if (valueParsed === null) {
+    return null;
+  }
+
+  return new Intl.NumberFormat(locales, {
+    style: 'currency',
+    currency: currencyCode,
+    maximumFractionDigits: fractionDigits,
+    minimumFractionDigits: fractionDigits,
+    ...options,
+  }).format(valueParsed);
+};
