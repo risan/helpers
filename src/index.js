@@ -61,3 +61,21 @@ export const isEmpty = value => {
 
   return false;
 };
+
+export const parseNumber = (value, fallbackValue = null) => {
+  if (isEmpty(value)) {
+    return fallbackValue;
+  }
+
+  if (isBoolean(value)) {
+    return value === true ? 1 : 0;
+  }
+
+  if (isDate(value)) {
+    return value.getTime();
+  }
+
+  const valueParsed = isNumber(value) ? value : parseFloat(value, 10);
+
+  return Number.isNaN(valueParsed) ? fallbackValue : valueParsed;
+};
