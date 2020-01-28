@@ -173,3 +173,15 @@ export const formatCurrencyCompact = (
 
   return formatCurrency(valueCompact, fractionDigits, options) + symbol;
 };
+
+export const formatPercent = (value, fractionDigits = 2) => {
+  const valueParsed = parseNumber(value);
+
+  if (valueParsed === null) {
+    return null;
+  }
+
+  const percent = valueParsed * 100;
+
+  return `${formatDecimal(percent, fractionDigits)}%`;
+};
