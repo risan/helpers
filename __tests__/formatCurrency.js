@@ -22,6 +22,12 @@ test('it can format a number with string type', () => {
   expect(formatCurrency('-3.14')).toBe('-$3.14');
 });
 
+test('it returns null if it cannot be parsed', () => {
+  expect(formatCurrency('foo')).toBeNull();
+  expect(formatCurrency([])).toBeNull();
+  expect(formatCurrency({})).toBeNull();
+});
+
 test('it can accept a custom fraction digits', () => {
   expect(formatCurrency(123.4567, 0)).toBe('$123');
   expect(formatCurrency(123.4567, 1)).toBe('$123.5');

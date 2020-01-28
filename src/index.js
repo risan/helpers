@@ -80,6 +80,25 @@ export const parseNumber = (value, fallbackValue = null) => {
   return Number.isNaN(valueParsed) ? fallbackValue : valueParsed;
 };
 
+export const formatDecimal = (
+  value,
+  fractionDigits = 2,
+  { locales = 'en-US', ...options } = {}
+) => {
+  const valueParsed = parseNumber(value);
+
+  if (valueParsed === null) {
+    return null;
+  }
+
+  return new Intl.NumberFormat(locales, {
+    style: 'decimal',
+    maximumFractionDigits: fractionDigits,
+    minimumFractionDigits: fractionDigits,
+    ...options,
+  }).format(valueParsed);
+};
+
 export const formatCurrency = (
   value,
   fractionDigits = 2,
