@@ -14,7 +14,7 @@ test('it returns true for an empty value', () => {
   expect(isEmpty(new Map())).toBe(true);
 });
 
-test('it returns false for a non-Set instance', () => {
+test('it returns false for a non-empty value', () => {
   expect(isEmpty(Infinity)).toBe(false);
   expect(isEmpty(true)).toBe(false);
   expect(isEmpty(false)).toBe(false);

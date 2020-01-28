@@ -62,6 +62,9 @@ export const isEmpty = value => {
   return false;
 };
 
+export const coalesce = (value, fallbackValue = null) =>
+  isEmpty(value) ? fallbackValue : value;
+
 export const parseNumber = (value, fallbackValue = null) => {
   if (isEmpty(value)) {
     return fallbackValue;
