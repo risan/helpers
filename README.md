@@ -8,6 +8,8 @@
 - [`formatDecimal()`](#formatDecimal)
 - [`formatDecimalCompact()`](#formatDecimalCompact)
 - [`formatPercent()`](#formatPercent)
+- [`formatPercentFrom()`](#formatPercentFrom)
+- [`getRatio()`](#getRatio)
 
 ### `coalesce()`
 
@@ -169,4 +171,49 @@ formatPercent('foo');   // null
 formatPercent(0.1234, 0); // 12%
 formatPercent(0.1234, 1); // 12.3%
 formatPercent(0.1234, 3); // 12.340%
+```
+
+### `formatPercentFrom()`
+
+Format `value` in percentage out of the given `total`.
+
+```js
+formatPercentFrom(value, total, fractionDigits = 2)
+```
+
+```js
+import { formatPercentFrom } from '@risan/helpers';
+
+formatPercentFrom(25, 100);     // 25.00%
+formatPercentFrom('1', '2.0');  // 50.00%
+formatPercentFrom(0.0, 1000);   // 0.00%
+formatPercentFrom(200, 200);    // 100.00%
+formatPercentFrom('foo', 100);  // null
+
+// Set custom fractionDigits
+formatPercentFrom(2.518, 10, 0); // 25%
+formatPercentFrom(2.518, 10, 1); // 25.2%
+formatPercentFrom(2.518, 10, 3); // 25.180%
+```
+
+### `getRatio()`
+
+Calculate the ratio of `value` out of the given `total`.
+
+```js
+getRatio(value, total)
+```
+
+```js
+import { getRatio } from '@risan/helpers';
+
+getRatio(25, 100);     // 0.25
+getRatio('1', '2.0');  // 0.5
+getRatio(0.0, 1000);   // 0
+getRatio(200, 200);    // 1
+getRatio('foo', 100);  // null
+
+// In case of 0 total
+getRatio(123, 0);   // 1
+getRatio(-123, 0);  // -1
 ```
