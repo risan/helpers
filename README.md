@@ -5,6 +5,8 @@
 - [`coalesce()`](#coalesce)
 - [`formatCurrency()`](#formatCurrency)
 - [`formatCurrencyCompact()`](#formatCurrencyCompact)
+- [`formatDecimal()`](#formatDecimal)
+- [`formatDecimalCompact()`](#formatDecimalCompact)
 - [`formatPercent()`](#formatPercent)
 
 ### `coalesce()`
@@ -54,11 +56,12 @@ import { formatCurrency } from '@risan/helpers';
 formatCurrency(15200);    // $15,200.00
 formatCurrency(4000.231); // $4,000.23
 formatCurrency('123.4');  // $123.4
-formatCurrency('');       // null
+formatCurrency('foo');    // null
 
 // Set custom fractionDigits
-formatCurrency(4000.231, 0); // $4,000
-formatCurrency(4000.231, 3); // $4,000.231
+formatCurrency(4000.281, 0); // $4,000
+formatCurrency(4000.281, 1); // $4,000.3
+formatCurrency(4000.281, 3); // $4,000.281
 
 // Set currency in Euro
 formatCurrency(15200, 2, { currencyCode: 'EUR' }); // €15,200.00
@@ -92,6 +95,57 @@ formatCurrencyCompact(1234, 3); // $1.234K
 
 // Set currency in Euro
 formatCurrencyCompact(1250, 2, { currencyCode: 'EUR' }); // €1.25K
+```
+
+### `formatDecimal()`
+
+Format `value` in decimal.
+
+```js
+formatDecimal(value, fractionDigits = 2, options = {
+  locales: 'en-US',
+})
+```
+
+```js
+import { formatDecimal } from '@risan/helpers';
+
+formatDecimal(15200);    // 15,200.00
+formatDecimal(4000.231); // 4,000.23
+formatDecimal('123.4');  // 123.4
+formatDecimal('foo');    // null
+
+// Set custom fractionDigits
+formatDecimal(4000.281, 0); // 4,000
+formatDecimal(4000.281, 1); // 4,000.3
+formatDecimal(4000.281, 3); // 4,000.281
+
+// Remove number grouping
+formatDecimal(15200, 2 { useGrouping: false }); // 15200.00
+```
+
+### `formatDecimalCompact()`
+
+Format `value` in decimal with abbreviated suffix (K/M/B).
+
+```js
+formatDecimalCompact(value, fractionDigits = 2, options = {})
+```
+
+```js
+import { formatDecimalCompact } from '@risan/helpers';
+
+formatDecimalCompact(100);         // 100.00
+formatDecimalCompact(1000.0);      // 1.00K
+formatDecimalCompact('1250');      // 1.25K
+formatDecimalCompact(1250000);     // 1.25M
+formatDecimalCompact(1250000000);  // 1.25B
+formatDecimalCompact('foo');       // null
+
+// Set custom fractionDigits
+formatDecimalCompact(1234, 0); // 1K
+formatDecimalCompact(1234, 1); // 1.2K
+formatDecimalCompact(1234, 3); // 1.234K
 ```
 
 ### `formatPercent()`
