@@ -1,5 +1,26 @@
 # Helpers
 
+[![CircleCI](https://circleci.com/gh/risan/helpers.svg?style=shield)](https://circleci.com/gh/risan/helpers)
+[![Codecov](https://codecov.io/gh/risan/helpers/branch/master/graph/badge.svg)](https://codecov.io/gh/risan/helpers)
+[![NPM](https://img.shields.io/npm/v/@risan/helpers)](https://www.npmjs.com/package/@risan/helpers)
+
+## Installation
+
+```bash
+$ npm install @risan/helpers
+```
+
+### CDN
+
+You can also use the CDN directly:
+
+```html
+<script src="https://unpkg.com/@risan/helpers@latest/dist/helpers.js"></script>
+
+<!-- Or the minified version -->
+<script src="https://unpkg.com/@risan/helpers@latest/dist/helpers.min.js"></script>
+```
+
 ## API
 
 - [`coalesce()`](#coalesce)
