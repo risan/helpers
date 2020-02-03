@@ -47,7 +47,8 @@
     "build": "rollup -c",
     "lint": "eslint ./",
     "lint-fix": "eslint ./ --fix",
-    "test": "jest"
+    "test": "jest",
+    "prepublishOnly": "npm run lint && npm run test && npm run build"
   },
   "browserslist": [
     "> 0.5%",
