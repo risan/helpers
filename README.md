@@ -53,6 +53,7 @@ You can also use the CDN directly:
 
 **Date:**
 
+- [`formatDate()`](#formatDate)
 - [`parseDate()`](#parseDate)
 
 ### `isArray()`
@@ -529,6 +530,47 @@ parseNumber(new Date('foo')); // null
 parseNumber('foo', 123);  // 123
 parseNumber({}, 'empty'); // empty
 parseNumber([], false);   // false
+```
+
+### `formatDate()`
+
+Format the given `value` as a date. You can also pass the optional `outputPattern` and `inputPattern` (see `date-fns`'s [format string pattern](https://date-fns.org/v2.9.0/docs/format)).
+
+```js
+formatDate(value, outputPattern = 'MM/dd/yyyy', inputPattern = null)
+```
+
+```js
+import { formatDate } from '@risan/helpers';
+
+// Format a Date instance.
+formatDate(new Date(2020, 7, 31)); // 08/31/2020
+
+// Numbers will be parsed as milliseconds since Unix epoch.
+formatDate(0);               // 01/01/1970
+formatDate(1598837415250.0); // 08/31/2020
+
+// It can format several ISO 8601 patterns.
+formatDate('2020-08-31');                 // 08/31/2020
+formatDate('2020-08-31T08:15:30');        // 08/31/2020
+formatDate('2020-08-31T08:15:30.250');    // 08/31/2020
+formatDate('2020-08-31T08:15:30+02:00');  // 08/31/2020
+
+// Format SQL date time.
+formatDate('2020-08-31 08:15:30');      // 08/31/2020
+formatDate('2020-08-31 08:15:30.250');  // 08/31/2020
+
+// Format .Net date time.
+formatDate('/Date(1598837415250)/');      // 08/31/2020
+formatDate('/Date(1598837415250+0200)/'); // 08/31/2020
+
+// Set a custom output pattern.
+formatDate('2020-08-31T08:15:30.250', 'dd-MM-yyyy');        // 31-08-2020
+formatDate('2020-08-31T08:15:30.250', 'MM/dd/yyyy h:mm a'); // 08/31/2020 8:15 AM
+
+// Set a custom input pattern.
+formatDate('20200831', 'MM/dd/yyyy', 'yyyyMMdd'); // 08/31/2020
+formatDate('08/31/2020 8:15 AM', 'yyyy-MM-dd HH:mm:ss', 'MM/dd/yyyy h:mm a'); // 2020-08-31 08:15:00
 ```
 
 ### `parseDate()`

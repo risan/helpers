@@ -96,5 +96,6 @@ test('it returns null if date string is invalid', () => {
   expect(parseDate('foo')).toBeNull();
   expect(parseDate('2020-08-32')).toBeNull();
   expect(parseDate('2020-08-31 08:15:70')).toBeNull();
+  expect(parseDate('2020-08-31 08:15:70.250')).toBeNull();
   expect(parseDate('20200832', 'yyyyMMdd')).toBeNull();
 });

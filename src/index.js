@@ -1,4 +1,5 @@
 import isPlainObject from 'lodash/isPlainObject';
+import dateFnsFormat from 'date-fns/format';
 import dateFnsParse from 'date-fns/parse';
 import dateFnsParseISO from 'date-fns/parseISO';
 
@@ -273,4 +274,18 @@ export const parseDate = (value, pattern = null) => {
   }
 
   return null;
+};
+
+export const formatDate = (
+  value,
+  outputPattern = 'MM/dd/yyyy',
+  inputPattern = null
+) => {
+  const valueParsed = parseDate(value, inputPattern);
+
+  if (valueParsed === null) {
+    return null;
+  }
+
+  return dateFnsFormat(valueParsed, outputPattern);
 };
