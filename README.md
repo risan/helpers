@@ -34,13 +34,13 @@ You can also use the CDN directly:
 - [`isSet()`](#isSet)
 - [`isString()`](#isString)
 
-**Utilities:**
+**Utility:**
 
 - [`coalesce()`](#coalesce)
 - [`isEmpty()`](#isEmpty)
 
 
-**Numbers:**
+**Number:**
 
 - [`formatCurrency()`](#formatCurrency)
 - [`formatCurrencyCompact()`](#formatCurrencyCompact)
@@ -50,6 +50,10 @@ You can also use the CDN directly:
 - [`formatPercentFrom()`](#formatPercentFrom)
 - [`getRatio()`](#getRatio)
 - [`parseNumber()`](#parseNumber)
+
+**Date:**
+
+- [`parseDate()`](#parseDate)
 
 ### `isArray()`
 
@@ -525,4 +529,51 @@ parseNumber(new Date('foo')); // null
 parseNumber('foo', 123);  // 123
 parseNumber({}, 'empty'); // empty
 parseNumber([], false);   // false
+```
+
+### `parseDate()`
+
+Parse the given `value` to `Date` instance. You can also pass the optional `pattern` (see `date-fns`'s [format string pattern](https://date-fns.org/v2.9.0/docs/parse)).
+
+```js
+parseDate(value, pattern = null)
+```
+
+```js
+import { parseDate } from '@risan/helpers';
+
+// Returns the given date value.
+parseDate(new Date());
+parseDate(new Date(2020, 0, 31));
+
+// Number will be parsed as a milliseconds since Unix epoch.
+parseDate(1580458530250); // new Date(1580458530250)
+parseDate(0);             // new Date(0)
+parseDate(0.0);           // new Date(0)
+
+// It can parse several ISO 8601 formats.
+parseDate('2020-08-31');                    // new Date(2020, 7, 31)
+parseDate('2020-08-31T08:15:30');           // new Date(2020, 7, 31, 8, 15, 30)
+parseDate('2020-08-31T08:15:30.250');       // new Date(2020, 7, 31, 8, 15, 30, 250)
+parseDate('2020-08-31T08:15:30.250Z');      // new Date(Date.UTC(2020, 7, 31, 8, 15, 30, 250))
+parseDate('2020-08-31T08:15:30+02:00');     // new Date(Date.UTC(2020, 7, 31, 6, 15, 30))
+parseDate('2020-08-31T08:15:30-02:00');     // new Date(Date.UTC(2020, 7, 31, 10, 15, 30))
+parseDate('2020-08-31T08:15:30.250-02:00'); // new Date(Date.UTC(2020, 7, 31, 10, 15, 30, 250))
+
+// Parse SQL date time format.
+parseDate('2020-08-31 08:15:30'); // new Date(2020, 7, 31, 8, 15, 30)
+
+// Parse .Net date time format.
+parseDate('/Date(1580458530250)/');      // new Date(1580458530250)
+parseDate('/Date(1580458530250-0700)/'); // new Date(1580458530250)
+
+// Set a custom pattern.
+parseDate('08_31_2020', 'MM_dd_yyyy'); // new Date(2020, 7, 31));
+parseDate('20200831 08.15.30', 'yyyyMMdd HH.mm.ss'); // new Date(2020, 7, 31, 8, 15, 30)
+
+// Returns null if the value is empty or invalid.
+parseDate(null);                        // null
+parseDate('foo');                       // null
+parseDate('2020-08-32');                // null
+parseDate('08_32_2020', 'MM_dd_yyyy');  // null
 ```
