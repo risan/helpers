@@ -256,6 +256,14 @@ export const parseDate = (value, pattern = null) => {
     return isDate(date) ? date : null;
   }
 
+  const sqlDateWithMs = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d+$/;
+
+  if (sqlDateWithMs.test(value)) {
+    const date = dateFnsParse(value, 'yyyy-MM-dd HH:mm:ss.SSS', new Date());
+
+    return isDate(date) ? date : null;
+  }
+
   const dotnetDate = /^\/Date\((\d+)([+-]\d{4})?\)\/$/;
 
   const matches = value.match(dotnetDate);

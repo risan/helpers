@@ -57,6 +57,14 @@ test('it can parse SQL date time string', () => {
   expect(parseDate('2020-08-31 08:15:30')).toStrictEqual(
     new Date(2020, 7, 31, 8, 15, 30)
   );
+
+  expect(parseDate('2020-08-31 08:15:30.000')).toStrictEqual(
+    new Date(2020, 7, 31, 8, 15, 30)
+  );
+
+  expect(parseDate('2020-08-31 08:15:30.250')).toStrictEqual(
+    new Date(2020, 7, 31, 8, 15, 30, 250)
+  );
 });
 
 test('it can parse dot net date time string', () => {

@@ -562,6 +562,7 @@ parseDate('2020-08-31T08:15:30.250-02:00'); // new Date(Date.UTC(2020, 7, 31, 10
 
 // Parse SQL date time format.
 parseDate('2020-08-31 08:15:30'); // new Date(2020, 7, 31, 8, 15, 30)
+parseDate('2020-08-31 08:15:30.250'); // new Date(2020, 7, 31, 8, 15, 30, 250)
 
 // Parse .Net date time format.
 parseDate('/Date(1580458530250)/');      // new Date(1580458530250)
