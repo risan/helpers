@@ -23,16 +23,22 @@ You can also use the CDN directly:
 
 ## API
 
-- [`coalesce()`](#coalesce)
+**Type Checking:**
+
 - [`isArray()`](#isArray)
 - [`isBoolean()`](#isBoolean)
 - [`isDate()`](#isDate)
-- [`isEmpty()`](#isEmpty)
 - [`isMap()`](#isMap)
 - [`isNumber()`](#isNumber)
 - [`isObject()`](#isObject)
 - [`isSet()`](#isSet)
 - [`isString()`](#isString)
+
+**Utilities:**
+
+- [`coalesce()`](#coalesce)
+- [`isEmpty()`](#isEmpty)
+
 
 **Numbers:**
 
@@ -44,36 +50,6 @@ You can also use the CDN directly:
 - [`formatPercentFrom()`](#formatPercentFrom)
 - [`getRatio()`](#getRatio)
 - [`parseNumber()`](#parseNumber)
-
-### `coalesce()`
-
-It returns the `value` itself if it's not empty, or else returns the `fallbackValue`.
-
-```js
-coalesce(value, fallbackValue = null)
-```
-
-```js
-import { coalesce } from '@risan/helpers';
-
-coalesce(null);       // null
-coalesce(undefined);  // null
-coalesce(NaN);        // null
-coalesce('');         // null
-coalesce(' ');        // null
-coalesce([]);         // null
-coalesce({});         // null
-coalesce(new Set());  // null
-coalesce(new Map());  // null
-coalesce(new Date('foo')); // invalid date returns null
-
-// false and 0 won't return null
-coalesce(false);  // false
-coalesce(0);      // 0
-
-// Set custom fallbackValue
-coalesce('', 'empty string'); // empty string
-```
 
 ### `isArray()`
 
@@ -138,43 +114,6 @@ isDate(new Date('foo'));  // false
 isDate('foo');  // false
 isDate(12345);  // false
 isDate(true);   // false
-```
-
-### `isEmpty()`
-
-Check if the given `value` is considered empty.
-
-```js
-isEmpty(value)
-```
-
-```js
-import { isEmpty } from '@risan/helpers';
-
-isEmpty(null);      // true
-isEmpty(undefined); // true
-isEmpty(NaN);       // true
-isEmpty('');        // true
-isEmpty([]);        // true
-isEmpty({});        // true
-isEmpty(new Set()); // true
-isEmpty(new Map()); // true
-
-// Empty string returns true.
-isEmpty(' '); // true
-
-// Invalid date returns true.
-isEmpty(new Date('foo')); // true
-
-isEmpty('foo');           // false
-isEmpty(-123);            // false
-isEmpty([1, 2, 3]);       // false
-isEmpty({ foo: 'bar' });  // false
-
-// false, 0, and Infinity return false.
-isEmpty(false);     // false
-isEmpty(0);         // false
-isEmpty(Infinity);  // false
 ```
 
 ### `isMap()`
@@ -303,6 +242,73 @@ isString(true);           // false
 isString(123);            // false
 isString(['a', 'b']);     // false
 isString({ foo: 'bar' }); // false
+```
+
+### `coalesce()`
+
+It returns the `value` itself if it's not empty, or else returns the `fallbackValue`.
+
+```js
+coalesce(value, fallbackValue = null)
+```
+
+```js
+import { coalesce } from '@risan/helpers';
+
+coalesce(null);       // null
+coalesce(undefined);  // null
+coalesce(NaN);        // null
+coalesce('');         // null
+coalesce(' ');        // null
+coalesce([]);         // null
+coalesce({});         // null
+coalesce(new Set());  // null
+coalesce(new Map());  // null
+coalesce(new Date('foo')); // invalid date returns null
+
+// false and 0 won't return null
+coalesce(false);  // false
+coalesce(0);      // 0
+
+// Set custom fallbackValue
+coalesce('', 'empty string'); // empty string
+```
+
+### `isEmpty()`
+
+Check if the given `value` is considered empty.
+
+```js
+isEmpty(value)
+```
+
+```js
+import { isEmpty } from '@risan/helpers';
+
+isEmpty(null);      // true
+isEmpty(undefined); // true
+isEmpty(NaN);       // true
+isEmpty('');        // true
+isEmpty([]);        // true
+isEmpty({});        // true
+isEmpty(new Set()); // true
+isEmpty(new Map()); // true
+
+// Empty string returns true.
+isEmpty(' '); // true
+
+// Invalid date returns true.
+isEmpty(new Date('foo')); // true
+
+isEmpty('foo');           // false
+isEmpty(-123);            // false
+isEmpty([1, 2, 3]);       // false
+isEmpty({ foo: 'bar' });  // false
+
+// false, 0, and Infinity return false.
+isEmpty(false);     // false
+isEmpty(0);         // false
+isEmpty(Infinity);  // false
 ```
 
 ### `formatCurrency()`
