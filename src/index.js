@@ -219,6 +219,23 @@ export const formatPercentFrom = (value, total, fractionDigits = 2) => {
   return formatPercent(ratio, fractionDigits);
 };
 
+export const MONTH_NAMES = [
+  'January',
+  'February',
+  'March',
+  'April',
+  'May',
+  'June',
+  'July',
+  'August',
+  'September',
+  'October',
+  'November',
+  'December',
+];
+
+export const SHORT_MONTH_NAMES = MONTH_NAMES.map(m => m.substring(0, 3));
+
 export const parseDate = (value, pattern = null) => {
   if (isDate(value)) {
     return value;

@@ -53,6 +53,8 @@ You can also use the CDN directly:
 
 **Date:**
 
+- [`MONTH_NAMES`](#month_names)
+- [`SHORT_MONTH_NAMES`](#short_month_names)
 - [`formatDate()`](#formatDate)
 - [`parseDate()`](#parseDate)
 - [`fromNow()`](#fromNow)
@@ -531,6 +533,26 @@ parseNumber(new Date('foo')); // null
 parseNumber('foo', 123);  // 123
 parseNumber({}, 'empty'); // empty
 parseNumber([], false);   // false
+```
+
+### `MONTH_NAMES`
+
+Array of month names in english.
+
+```js
+import { MONTH_NAMES } from '@risan/helpers';
+
+console.log(MONTH_NAMES); // ["January", "February", ... "December"]
+```
+
+### `SHORT_MONTH_NAMES`
+
+Array of short month names in english.
+
+```js
+import { SHORT_MONTH_NAMES } from '@risan/helpers';
+
+console.log(SHORT_MONTH_NAMES); // ["Jan", "Feb", ... "Dec"]
 ```
 
 ### `formatDate()`
