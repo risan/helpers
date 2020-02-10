@@ -236,6 +236,8 @@ export const MONTH_NAMES = [
 
 export const SHORT_MONTH_NAMES = MONTH_NAMES.map(m => m.substring(0, 3));
 
+export const getCurrentYear = () => new Date().getFullYear();
+
 export const parseDate = (value, pattern = null) => {
   if (isDate(value)) {
     return value;

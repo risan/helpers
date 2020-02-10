@@ -555,6 +555,20 @@ import { SHORT_MONTH_NAMES } from '@risan/helpers';
 console.log(SHORT_MONTH_NAMES); // ["Jan", "Feb", ... "Dec"]
 ```
 
+### `getCurrentYear()`
+
+Get the current year.
+
+```js
+getCurrentYear()
+```
+
+```js
+import { getCurrentYear } from '@risan/helpers';
+
+getCurrentYear() === (new Date()).getFullYear(); // true
+```
+
 ### `formatDate()`
 
 Format the given `value` as a date. You can also pass the optional `outputPattern` and `inputPattern` (see `date-fns`'s [format string pattern](https://date-fns.org/v2.9.0/docs/format)). Also check the [Automatic Datetime Pattern Recognition](#automatic-datetime-pattern-recognition) section to see all possible patterns that can be recognized automatically.
