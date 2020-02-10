@@ -534,7 +534,7 @@ parseNumber([], false);   // false
 
 ### `formatDate()`
 
-Format the given `value` as a date. You can also pass the optional `outputPattern` and `inputPattern` (see `date-fns`'s [format string pattern](https://date-fns.org/v2.9.0/docs/format)).
+Format the given `value` as a date. You can also pass the optional `outputPattern` and `inputPattern` (see `date-fns`'s [format string pattern](https://date-fns.org/v2.9.0/docs/format)). Check the [Automatic Date Pattern Recognition](#automatic-date-pattern-recogniztion) section to see all possible `value` patterns that can be recognized automatically.
 
 ```js
 formatDate(value, outputPattern = 'MM/dd/yyyy', inputPattern = null)
@@ -575,11 +575,25 @@ formatDate('08/31/2020 8:15 AM', 'yyyy-MM-dd HH:mm:ss', 'MM/dd/yyyy h:mm a'); //
 
 ### `parseDate()`
 
-Parse the given `value` to `Date` instance. You can also pass the optional `pattern` (see `date-fns`'s [format string pattern](https://date-fns.org/v2.9.0/docs/parse)).
+Parse the given `value` to `Date` instance. You can also pass the optional `pattern` (see `date-fns`'s [format string pattern](https://date-fns.org/v2.9.0/docs/parse)). Note that if the `value` is a `number` type, it will be treated as milliseconds since the Unix epoch and the `pattern` parameter would be ignored completely.
 
 ```js
 parseDate(value, pattern = null)
 ```
+
+#### Automatic Date Pattern Recognition
+
+If you don't pass the `pattern` parameter, it will try to guess the value's pattern. Here's the list of all patterns that can be recognized automatically:
+
+* `yyyy-MM-dd`: `2020-01-31`
+* `yyyy-MM-dd'T'hh:mm:ss`: `2020-01-31T08:15:30`
+* `yyyy-MM-dd'T'hh:mm:ss.SSS`: `2020-01-31T08:15:30.250`
+* `yyyy-MM-dd'T'hh:mm:ss.SSSZ`: `2020-01-31T08:15:30.250Z`
+* `yyyy-MM-dd'T'hh:mm:ssxxx`: `2020-01-31T08:15:30+02:00`
+* `yyyy-MM-dd'T'hh:mm:ss.SSSxxx`: `2020-01-31T08:15:30.250+02:00`
+* `yyyy-MM-dd HH:mm:ss`: `2020-01-31 08:15:30`
+* `yyyy-MM-dd HH:mm:ss.SSS`: `2020-01-31 08:15:30.250`
+* .Net datetime JSON: `/Date(1580458530250)/`, `/Date(1580458530250+0200)/`
 
 ```js
 import { parseDate } from '@risan/helpers';
