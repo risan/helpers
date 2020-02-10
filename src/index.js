@@ -1,4 +1,6 @@
 import isPlainObject from 'lodash/isPlainObject';
+import mapKeys from 'lodash/mapKeys';
+import snakeCase from 'lodash/snakeCase';
 import dateFnsFormat from 'date-fns/format';
 import dateFnsParse from 'date-fns/parse';
 import dateFnsParseISO from 'date-fns/parseISO';
@@ -68,6 +70,9 @@ export const isEmpty = value => {
 
 export const coalesce = (value, fallbackValue = null) =>
   isEmpty(value) ? fallbackValue : value;
+
+export const snakeCaseKeys = obj =>
+  mapKeys(obj, (value, key) => snakeCase(key));
 
 export const parseNumber = (value, fallbackValue = null) => {
   if (isEmpty(value)) {

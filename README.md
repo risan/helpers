@@ -38,7 +38,7 @@ You can also use the CDN directly:
 
 - [`coalesce()`](#coalesce)
 - [`isEmpty()`](#isEmpty)
-
+- [`snakeCaseKeys()`](#snakeCaseKeys)
 
 **Number:**
 
@@ -317,6 +317,20 @@ isEmpty({ foo: 'bar' });  // false
 isEmpty(false);     // false
 isEmpty(0);         // false
 isEmpty(Infinity);  // false
+```
+
+### `snakeCaseKeys()`
+
+Returns a new object where all its property names are transformed into snake case.
+
+```js
+snakeCaseKeys(obj)
+```
+
+```js
+import { snakeCaseKeys } from '@risan/helpers';
+
+snakeCaseKeys({ userId: 123, FIRST_NAME: 'foo' }); // { user_id: 123, first_name: 'foo' }
 ```
 
 ### `formatCurrency()`
