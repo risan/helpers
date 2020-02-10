@@ -2,6 +2,7 @@ import isPlainObject from 'lodash/isPlainObject';
 import dateFnsFormat from 'date-fns/format';
 import dateFnsParse from 'date-fns/parse';
 import dateFnsParseISO from 'date-fns/parseISO';
+import formatDistanceToNow from 'date-fns/formatDistanceToNow';
 
 export const isArray = value => Array.isArray(value);
 
@@ -288,4 +289,14 @@ export const formatDate = (
   }
 
   return dateFnsFormat(valueParsed, outputPattern);
+};
+
+export const fromNow = (value, pattern = null) => {
+  const valueParsed = parseDate(value, pattern);
+
+  if (valueParsed === null) {
+    return null;
+  }
+
+  return formatDistanceToNow(valueParsed, { addSuffix: true });
 };

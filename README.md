@@ -55,6 +55,7 @@ You can also use the CDN directly:
 
 - [`formatDate()`](#formatDate)
 - [`parseDate()`](#parseDate)
+- [`fromNow()`](#fromNow)
 
 ### `isArray()`
 
@@ -534,7 +535,7 @@ parseNumber([], false);   // false
 
 ### `formatDate()`
 
-Format the given `value` as a date. You can also pass the optional `outputPattern` and `inputPattern` (see `date-fns`'s [format string pattern](https://date-fns.org/v2.9.0/docs/format)). Check the [Automatic Date Pattern Recognition](#automatic-date-pattern-recogniztion) section to see all possible `value` patterns that can be recognized automatically.
+Format the given `value` as a date. You can also pass the optional `outputPattern` and `inputPattern` (see `date-fns`'s [format string pattern](https://date-fns.org/v2.9.0/docs/format)). Also check the [Automatic Datetime Pattern Recognition](#automatic-datetime-pattern-recognition) section to see all possible patterns that can be recognized automatically.
 
 ```js
 formatDate(value, outputPattern = 'MM/dd/yyyy', inputPattern = null)
@@ -550,17 +551,15 @@ formatDate(new Date(2020, 7, 31)); // 08/31/2020
 formatDate(0);               // 01/01/1970
 formatDate(1598837415250.0); // 08/31/2020
 
-// It can format several ISO 8601 patterns.
+// Automatic datetime pattern recognition, see parseDate()
 formatDate('2020-08-31');                 // 08/31/2020
 formatDate('2020-08-31T08:15:30');        // 08/31/2020
 formatDate('2020-08-31T08:15:30.250');    // 08/31/2020
 formatDate('2020-08-31T08:15:30+02:00');  // 08/31/2020
 
-// Format SQL date time.
-formatDate('2020-08-31 08:15:30');      // 08/31/2020
-formatDate('2020-08-31 08:15:30.250');  // 08/31/2020
+formatDate('2020-08-31 08:15:30');        // 08/31/2020
+formatDate('2020-08-31 08:15:30.250');    // 08/31/2020
 
-// Format .Net date time.
 formatDate('/Date(1598837415250)/');      // 08/31/2020
 formatDate('/Date(1598837415250+0200)/'); // 08/31/2020
 
@@ -581,7 +580,7 @@ Parse the given `value` to `Date` instance. You can also pass the optional `patt
 parseDate(value, pattern = null)
 ```
 
-#### Automatic Date Pattern Recognition
+#### Automatic Datetime Pattern Recognition
 
 If you don't pass the `pattern` parameter, it will try to guess the value's pattern. Here's the list of all patterns that can be recognized automatically:
 
@@ -616,11 +615,11 @@ parseDate('2020-08-31T08:15:30+02:00');     // new Date(Date.UTC(2020, 7, 31, 6,
 parseDate('2020-08-31T08:15:30-02:00');     // new Date(Date.UTC(2020, 7, 31, 10, 15, 30))
 parseDate('2020-08-31T08:15:30.250-02:00'); // new Date(Date.UTC(2020, 7, 31, 10, 15, 30, 250))
 
-// Parse SQL date time format.
+// Parse SQL datetime format.
 parseDate('2020-08-31 08:15:30'); // new Date(2020, 7, 31, 8, 15, 30)
 parseDate('2020-08-31 08:15:30.250'); // new Date(2020, 7, 31, 8, 15, 30, 250)
 
-// Parse .Net date time format.
+// Parse .Net JSON datetime format.
 parseDate('/Date(1580458530250)/');      // new Date(1580458530250)
 parseDate('/Date(1580458530250-0700)/'); // new Date(1580458530250)
 
@@ -633,4 +632,36 @@ parseDate(null);                        // null
 parseDate('foo');                       // null
 parseDate('2020-08-32');                // null
 parseDate('08_32_2020', 'MM_dd_yyyy');  // null
+```
+
+### `fromNow()`
+
+Get the relative distance between the given `value` and now. You may pass the optional `pattern` parameter that will be used to parse the given `value` (see `date-fns`'s [format string pattern](https://date-fns.org/v2.9.0/docs/parse)). Also check the [Automatic Datetime Pattern Recognition](#automatic-datetime-pattern-recognition) section to see all possible patterns that can be recognized automatically.
+
+```js
+fromNow(value, pattern = null)
+```
+
+```js
+import { fromNow } from '@risan/helpers';
+
+fromNow(new Date(Date.now() - 2 * 60 * 1000)); // 2 minutes ago
+fromNow(new Date(Date.now() + 2 * 60 * 1000)); // in 2 minutes
+fromNow(new Date(Date.now() - 5 * 60 * 60 * 1000)); // about 5 hours ago
+fromNow(new Date(Date.now() + 5 * 60 * 60 * 1000)); // in about 5 hours
+
+// Automatic datetime pattern recognition, see parseDate()
+fromNow('2020-08-31T08:15:30');
+fromNow('2020-08-31T08:15:30+02:00');
+fromNow('2020-08-31 08:15:30');
+fromNow('/Date(1580458530250-0700)/');
+
+// Pass a custom pattern.
+fromNow('20200831 08.15.30', 'yyyyMMdd HH.mm.ss');
+
+// Returns null if the value is empty or invalid.
+fromNow(null);                        // null
+fromNow('foo');                       // null
+fromNow('2020-08-32');                // null
+fromNow('08_32_2020', 'MM_dd_yyyy');  // null
 ```
