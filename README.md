@@ -28,6 +28,7 @@ You can also use the CDN directly:
 - [`isArray()`](#isArray)
 - [`isBoolean()`](#isBoolean)
 - [`isDate()`](#isDate)
+- [`isFunction()`](#isFunction)
 - [`isMap()`](#isMap)
 - [`isNumber()`](#isNumber)
 - [`isObject()`](#isObject)
@@ -124,6 +125,29 @@ isDate(new Date('foo'));  // false
 isDate('foo');  // false
 isDate(12345);  // false
 isDate(true);   // false
+```
+
+### `isFunction()`
+
+Check if the given `value` is a `function`.
+
+```js
+isFunction(value)
+```
+
+```js
+import { isFunction } from '@risan/helpers';
+
+isFunction(function () {}); // true
+isFunction(() => {});       // true
+isFunction(Number.isNaN);   // true
+
+isFunction(123);            // false
+isFunction('foo');          // false
+isFunction(true);           // false
+isFunction(new Set());      // false
+isFunction([1, 2]);         // false
+isFunction({ foo: 'bar' }); // false
 ```
 
 ### `isMap()`

@@ -20,6 +20,8 @@ export const isNumber = value =>
 export const isDate = value =>
   value instanceof Date && value.toString() !== 'Invalid Date';
 
+export const isFunction = value => typeof value === 'function';
+
 export const isMap = value => value instanceof Map;
 
 export const isSet = value => value instanceof Set;
