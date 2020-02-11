@@ -38,6 +38,7 @@ You can also use the CDN directly:
 
 - [`coalesce()`](#coalesce)
 - [`dataGet()`](#dataGet)
+- [`dataHas()`](#dataHas)
 - [`isEmpty()`](#isEmpty)
 - [`snakeCaseKeys()`](#snakeCaseKeys)
 
@@ -299,12 +300,37 @@ dataGet({ account: { id: 123 } }, 'account.id'); // 123
 dataGet([100, 200, 300], '[1]'); // 200
 dataGet({ ids: [100, 200, 300] }, 'ids.[1]'); // 200
 dataGet([{ id: 100}, { id: 200}], '[1].id'); // 200
-
-dataGet({ foo: 'bar' }, 'baz'); // undefined
 dataGet({ foo: null }, 'foo'); // null
 
+// It returns undefined if the path does not exist.
+dataGet({ foo: 'bar' }, 'baz'); // undefined
+
 // Set custom fallbackValue.
-dataGet({ foo: 'bar' }, 'baz', 'qux'); // qux
+dataGet({ foo: 'bar' }, 'baz', 'qux');     // qux
+dataGet({ foo: undefined }, 'foo', 'qux'); // qux
+```
+
+### `dataHas()`
+
+Check if the given `path` exists on `obj`. It uses Lodash [`has` function](https://lodash.com/docs/4.17.15#has) under the hood.
+
+```js
+dataHas(obj, path)
+```
+
+```js
+import { dataHas } from '@risan/helpers';
+
+dataHas({ foo: 'bar' }, 'foo');                  // true
+dataHas({ account: { id: 123 } }, 'account.id'); // true
+dataHas([100, 200, 300], '[1]');                 // true
+dataHas({ ids: [100, 200, 300] }, 'ids.[1]');    // true
+dataHas([{ id: 100}, { id: 200}], '[1].id');     // true
+dataHas({ foo: null }, 'foo');                   // true
+dataHas({ foo: undefined }, 'foo');              // true
+
+// It returns false if the path does not exist.
+dataHas({ foo: 'bar' }, 'baz'); // false
 ```
 
 ### `isEmpty()`

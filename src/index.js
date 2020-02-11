@@ -1,4 +1,5 @@
 import get from 'lodash/get';
+import has from 'lodash/has';
 import isPlainObject from 'lodash/isPlainObject';
 import mapKeys from 'lodash/mapKeys';
 import snakeCase from 'lodash/snakeCase';
@@ -74,6 +75,8 @@ export const coalesce = (value, fallbackValue = null) =>
 
 export const dataGet = (obj, path, fallbackValue = undefined) =>
   get(obj, path, fallbackValue);
+
+export const dataHas = (obj, path) => has(obj, path);
 
 export const snakeCaseKeys = obj =>
   mapKeys(obj, (value, key) => snakeCase(key));
