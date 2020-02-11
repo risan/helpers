@@ -1,3 +1,4 @@
+import get from 'lodash/get';
 import isPlainObject from 'lodash/isPlainObject';
 import mapKeys from 'lodash/mapKeys';
 import snakeCase from 'lodash/snakeCase';
@@ -70,6 +71,9 @@ export const isEmpty = value => {
 
 export const coalesce = (value, fallbackValue = null) =>
   isEmpty(value) ? fallbackValue : value;
+
+export const dataGet = (obj, path, fallbackValue = undefined) =>
+  get(obj, path, fallbackValue);
 
 export const snakeCaseKeys = obj =>
   mapKeys(obj, (value, key) => snakeCase(key));

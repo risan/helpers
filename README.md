@@ -37,6 +37,7 @@ You can also use the CDN directly:
 **Utility:**
 
 - [`coalesce()`](#coalesce)
+- [`dataGet()`](#dataGet)
 - [`isEmpty()`](#isEmpty)
 - [`snakeCaseKeys()`](#snakeCaseKeys)
 
@@ -280,6 +281,30 @@ coalesce(0);      // 0
 
 // Set custom fallbackValue
 coalesce('', 'empty string'); // empty string
+```
+
+### `dataGet()`
+
+Get the value at `path` of `obj`. If the `path` does not exist or the value is `undefined`, the `fallbackValue` would be returned. It uses Lodash [`get` function](https://lodash.com/docs/4.17.15#get) under the hood.
+
+```js
+dataGet(obj, path, fallbackValue = undefined)
+```
+
+```js
+import { dataGet } from '@risan/helpers';
+
+dataGet({ foo: 'bar' }, 'foo'); // bar
+dataGet({ account: { id: 123 } }, 'account.id'); // 123
+dataGet([100, 200, 300], '[1]'); // 200
+dataGet({ ids: [100, 200, 300] }, 'ids.[1]'); // 200
+dataGet([{ id: 100}, { id: 200}], '[1].id'); // 200
+
+dataGet({ foo: 'bar' }, 'baz'); // undefined
+dataGet({ foo: null }, 'foo'); // null
+
+// Set custom fallbackValue.
+dataGet({ foo: 'bar' }, 'baz', 'qux'); // qux
 ```
 
 ### `isEmpty()`
