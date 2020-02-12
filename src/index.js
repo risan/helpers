@@ -80,6 +80,16 @@ export const dataGet = (obj, path, fallbackValue = undefined) =>
 
 export const dataHas = (obj, path) => has(obj, path);
 
+export const digitOnly = value => {
+  const valueParsed = isNumber(value) ? `${value}` : value;
+
+  if (!isString(valueParsed)) {
+    return null;
+  }
+
+  return valueParsed.replace(/\D/g, '');
+};
+
 export const snakeCaseKeys = obj =>
   mapKeys(obj, (value, key) => snakeCase(key));
 

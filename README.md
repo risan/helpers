@@ -40,6 +40,7 @@ You can also use the CDN directly:
 - [`coalesce()`](#coalesce)
 - [`dataGet()`](#dataGet)
 - [`dataHas()`](#dataHas)
+- [`digitOnly()`](#digitOnly)
 - [`isEmpty()`](#isEmpty)
 - [`snakeCaseKeys()`](#snakeCaseKeys)
 
@@ -355,6 +356,35 @@ dataHas({ foo: undefined }, 'foo');              // true
 
 // It returns false if the path does not exist.
 dataHas({ foo: 'bar' }, 'baz'); // false
+```
+
+### `digitOnly()`
+
+Retruns a `string` where all non-digit characters are removed from the given `value`. It returns `null` if the given `value` is not `number` or `string` type.
+
+```js
+digitOnly(value)
+```
+
+```js
+import { digitOnly } from '@risan/helpers';
+
+digitOnly('123-456-7890'); // 1234567890
+digitOnly('AB123 RTS+45'); // 12345
+
+// Returns an absolute value in string if value is an integer
+digitOnly(123);   // 123
+digitOnly(-123);  // 123
+
+// Number sign and decimal point are removed from float.
+digitOnly(3.14);  // 314
+digitOnly(-3.14); // 314
+
+// Returns null if value is neither string nor number.
+digitOnly(null);        // null
+digitOnly(undefined);   // null
+digitOnly([1, 2, 3]);   // null
+digitOnly({ id: 12 });  // null
 ```
 
 ### `isEmpty()`
