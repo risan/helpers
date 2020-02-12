@@ -90,6 +90,42 @@ export const digitOnly = value => {
   return valueParsed.replace(/\D/g, '');
 };
 
+export const parsePhone = value => {
+  const valueParsed = isNumber(value) ? `${value}` : value;
+
+  if (!isString(valueParsed) || isEmpty(valueParsed)) {
+    return null;
+  }
+
+  const phonePattern = /^(\+?1[\s-.]?)?\(?(\d{3})\)?[\s-.]?(\d{3})[\s-.]?(\d{4})(\s?(x|ext|ext.|extension|#)\s?(\d+))?/gi;
+
+  const matched = phonePattern.exec(valueParsed);
+
+  return isArray(matched)
+    ? {
+        countryCode: matched[1] ? '+1' : null,
+        areaCode: matched[2],
+        centralOfficeCode: matched[3],
+        lineNumber: matched[4],
+        extension: matched[7] ? matched[7] : null,
+      }
+    : valueParsed;
+};
+
+export const formatPhone = value => {
+  const phone = parsePhone(value);
+
+  if (!isObject(phone)) {
+    return phone;
+  }
+
+  const prefix = phone.countryCode ? '+1 ' : '';
+  const subscriberNumber = `(${phone.areaCode}) ${phone.centralOfficeCode}-${phone.lineNumber}`;
+  const extension = phone.extension ? ` ext. ${phone.extension}` : '';
+
+  return `${prefix}${subscriberNumber}${extension}`;
+};
+
 export const snakeCaseKeys = obj =>
   mapKeys(obj, (value, key) => snakeCase(key));
 

@@ -55,6 +55,11 @@ You can also use the CDN directly:
 - [`getRatio()`](#getRatio)
 - [`parseNumber()`](#parseNumber)
 
+**Phone Number:**
+
+- [`formatPhone`](#formatPhone)
+- [`parsePhone`](#parsePhone)
+
 **Date:**
 
 - [`MONTH_NAMES`](#month_names)
@@ -652,6 +657,129 @@ parseNumber(new Date('foo')); // null
 parseNumber('foo', 123);  // 123
 parseNumber({}, 'empty'); // empty
 parseNumber([], false);   // false
+```
+
+### `formatPhone()`
+
+Format the given `value` as a US phone number.
+
+```js
+formatPhone(value)
+```
+
+It returns `null` if the `value` is empty, not a `string`, or a `number`. If the `value` does not match the US phone number, the `value` itself will be returned.
+
+```js
+import { formatPhone } from '@risan/helpers';
+
+// Returns: (222) 333-4444
+formatPhone(2223334444);
+formatPhone('222 333 4444');
+formatPhone('222-333-4444');
+formatPhone('222.333.4444');
+
+// Returns: +1 (222) 333-4444
+formatPhone(12223334444);
+formatPhone('1 222 333 4444');
+formatPhone('+1 222 333 4444');
+formatPhone('1-222-333-4444');
+formatPhone('1.222.333.4444');
+formatPhone('1 (222) 333-4444');
+
+// Returns: +1 (222) 333-4444 ext. 777
+formatPhone('1 222 333 4444 Ext. 777');
+formatPhone('+1 222 333 4444 ext 777');
+formatPhone('1-222-333-4444 x777');
+formatPhone('1.222.333.4444#777');
+formatPhone('1 (222) 333-4444 extension 777');
+
+// Returns the value itself if does not match the pattern.
+formatPhone(222); // 222
+formatPhone('222-6666'); // 222-6666
+
+// Returns null if empty, not a string, or not a number.
+formatPhone('');             // null
+formatPhone(undefined);      // null
+formatPhone([1, 2]);         // null
+formatPhone({ foo: 'bar' }); // null
+```
+
+### `parsePhone()`
+
+Parse the given `value` as a US phone number.
+
+```js
+parsePhone(value)
+```
+
+It returns `null` if the `value` is empty, not a `string`, or a `number`. If the `value` does not match the US phone number, the `value` itself will be returned. On success returns an `object` with the following structure:
+
+```js
+{
+  countryCode: String|null,
+  areaCode: String,
+  centralOfficeCode: String,
+  lineNumber: String,
+  extension: String|null,
+}
+```
+
+```js
+import { parsePhone } from '@risan/helpers';
+
+// {
+//   countryCode: null,
+//   areaCode: '222',
+//   centralOfficeCode: '333',
+//   lineNumber: '4444',
+//   extension: null
+// }
+parsePhone(2223334444);
+parsePhone('222 333 4444');
+parsePhone('222-333-4444');
+parsePhone('222.333.4444');
+parsePhone('(222) 333-4444');
+
+// With country code prefix.
+// {
+//   countryCode: '+1',
+//   areaCode: '222',
+//   centralOfficeCode: '333',
+//   lineNumber: '4444',
+//   extension: null
+// }
+parsePhone(12223334444);
+parsePhone('1 222 333 4444');
+parsePhone('+1 222 333 4444');
+parsePhone('1-222-333-4444');
+parsePhone('1.222.333.4444');
+parsePhone('1 (222) 333-4444');
+parsePhone('+1 (222) 333-4444');
+
+// With extension number
+// {
+//   countryCode: '+1',
+//   areaCode: '222',
+//   centralOfficeCode: '333',
+//   lineNumber: '4444',
+//   extension: '777'
+// }
+parsePhone('1 222 333 4444 Ext. 777');
+parsePhone('+1 222 333 4444 ext 777');
+parsePhone('1-222-333-4444 x777');
+parsePhone('1.222.333.4444#777');
+parsePhone('1 (222) 333-4444 extension 777');
+parsePhone('+1 (222) 333-4444 ext. 777');
+
+// Returns the value itself if does not match the pattern.
+parsePhone(222); // 222
+parsePhone('222-6666'); // 222-6666
+
+// Returns null if empty, not a string, or not a number.
+parsePhone('');             // null
+parsePhone(undefined);      // null
+parsePhone([1, 2]);         // null
+parsePhone({ foo: 'bar' }); // null
 ```
 
 ### `MONTH_NAMES`
