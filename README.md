@@ -54,6 +54,7 @@ You can also use the CDN directly:
 - [`formatPercentFrom()`](#formatPercentFrom)
 - [`getRatio()`](#getRatio)
 - [`parseNumber()`](#parseNumber)
+- [`sum()`](#sum)
 
 **Phone Number:**
 
@@ -68,7 +69,9 @@ You can also use the CDN directly:
 - [`parseDate()`](#parseDate)
 - [`fromNow()`](#fromNow)
 
-### `isArray()`
+### Type Checking
+
+#### `isArray()`
 
 Check if the given `value` is an array.
 
@@ -89,7 +92,7 @@ isArray(new Set([1, 2])); // false
 isArray(new Map());       // false
 ```
 
-### `isBoolean()`
+#### `isBoolean()`
 
 Check if the given `value` is a boolean type.
 
@@ -110,7 +113,7 @@ isBoolean('true');  // false
 isBoolean('');      // false
 ```
 
-### `isDate()`
+#### `isDate()`
 
 Check if the given `value` is a valid `Date` instance.
 
@@ -133,7 +136,7 @@ isDate(12345);  // false
 isDate(true);   // false
 ```
 
-### `isFunction()`
+#### `isFunction()`
 
 Check if the given `value` is a `function`.
 
@@ -156,7 +159,7 @@ isFunction([1, 2]);         // false
 isFunction({ foo: 'bar' }); // false
 ```
 
-### `isMap()`
+#### `isMap()`
 
 Check if the given `value` is a `Map` instance.
 
@@ -179,7 +182,7 @@ isMap([1, 2]);          // false
 isMap({ foo: 'bar' });  // false
 ```
 
-### `isNumber()`
+#### `isNumber()`
 
 Check if the given `value` is a number.
 
@@ -206,7 +209,7 @@ isNumber(NaN);      // false
 isNumber(Infinity); // false
 ```
 
-### `isObject()`
+#### `isObject()`
 
 Check if the given `value` is an object.
 
@@ -239,7 +242,7 @@ isObject(new Map());  // false
 isObject(new Set());  // false
 ```
 
-### `isSet()`
+#### `isSet()`
 
 Check if the given `value` is a `Set` instance.
 
@@ -263,7 +266,7 @@ isSet([1, 2]);          // false
 isSet({ foo: 'bar' });  // false
 ```
 
-### `isString()`
+#### `isString()`
 
 Check if the given `value` is a string.
 
@@ -284,7 +287,9 @@ isString(['a', 'b']);     // false
 isString({ foo: 'bar' }); // false
 ```
 
-### `coalesce()`
+### Utility
+
+#### `coalesce()`
 
 It returns the `value` itself if it's not empty, or else returns the `fallbackValue`.
 
@@ -314,7 +319,7 @@ coalesce(0);      // 0
 coalesce('', 'empty string'); // empty string
 ```
 
-### `dataGet()`
+#### `dataGet()`
 
 Get the value at `path` of `obj`. If the `path` does not exist or the value is `undefined`, the `fallbackValue` would be returned. It uses Lodash [`get` function](https://lodash.com/docs/4.17.15#get) under the hood.
 
@@ -340,7 +345,7 @@ dataGet({ foo: 'bar' }, 'baz', 'qux');     // qux
 dataGet({ foo: undefined }, 'foo', 'qux'); // qux
 ```
 
-### `dataHas()`
+#### `dataHas()`
 
 Check if the given `path` exists on `obj`. It uses Lodash [`has` function](https://lodash.com/docs/4.17.15#has) under the hood.
 
@@ -363,7 +368,7 @@ dataHas({ foo: undefined }, 'foo');              // true
 dataHas({ foo: 'bar' }, 'baz'); // false
 ```
 
-### `digitOnly()`
+#### `digitOnly()`
 
 Retruns a `string` where all non-digit characters are removed from the given `value`. It returns `null` if the given `value` is not `number` or `string` type.
 
@@ -392,7 +397,7 @@ digitOnly([1, 2, 3]);   // null
 digitOnly({ id: 12 });  // null
 ```
 
-### `isEmpty()`
+#### `isEmpty()`
 
 Check if the given `value` is considered empty.
 
@@ -429,7 +434,7 @@ isEmpty(0);         // false
 isEmpty(Infinity);  // false
 ```
 
-### `snakeCaseKeys()`
+#### `snakeCaseKeys()`
 
 Returns a new object where all its property names are transformed into snake case.
 
@@ -443,7 +448,9 @@ import { snakeCaseKeys } from '@risan/helpers';
 snakeCaseKeys({ userId: 123, FIRST_NAME: 'foo' }); // { user_id: 123, first_name: 'foo' }
 ```
 
-### `formatCurrency()`
+### Number
+
+#### `formatCurrency()`
 
 Format `value` in currency.
 
@@ -474,7 +481,7 @@ formatCurrency(15200, 2, { currencyCode: 'EUR' }); // €15,200.00
 formatCurrency(15200, 2 { useGrouping: false }); // $15200.00
 ```
 
-### `formatCurrencyCompact()`
+#### `formatCurrencyCompact()`
 
 Format `value` in currency with abbreviated suffix (K/M/B).
 
@@ -501,7 +508,7 @@ formatCurrencyCompact(1234, 3); // $1.234K
 formatCurrencyCompact(1250, 2, { currencyCode: 'EUR' }); // €1.25K
 ```
 
-### `formatDecimal()`
+#### `formatDecimal()`
 
 Format `value` in decimal.
 
@@ -528,7 +535,7 @@ formatDecimal(4000.281, 3); // 4,000.281
 formatDecimal(15200, 2 { useGrouping: false }); // 15200.00
 ```
 
-### `formatDecimalCompact()`
+#### `formatDecimalCompact()`
 
 Format `value` in decimal with abbreviated suffix (K/M/B).
 
@@ -552,7 +559,7 @@ formatDecimalCompact(1234, 1); // 1.2K
 formatDecimalCompact(1234, 3); // 1.234K
 ```
 
-### `formatPercent()`
+#### `formatPercent()`
 
 Format `value` in percentage.
 
@@ -575,7 +582,7 @@ formatPercent(0.1234, 1); // 12.3%
 formatPercent(0.1234, 3); // 12.340%
 ```
 
-### `formatPercentFrom()`
+#### `formatPercentFrom()`
 
 Format `value` in percentage out of the given `total`.
 
@@ -598,7 +605,7 @@ formatPercentFrom(2.518, 10, 1); // 25.2%
 formatPercentFrom(2.518, 10, 3); // 25.180%
 ```
 
-### `getRatio()`
+#### `getRatio()`
 
 Calculate the ratio of `value` out of the given `total`.
 
@@ -620,7 +627,7 @@ getRatio(123, 0);   // 1
 getRatio(-123, 0);  // -1
 ```
 
-### `parseNumber()`
+#### `parseNumber()`
 
 Parse the given `value` to number type. If `value` can't be parsed to number, `fallbackValue` will be return.
 
@@ -659,7 +666,34 @@ parseNumber({}, 'empty'); // empty
 parseNumber([], false);   // false
 ```
 
-### `formatPhone()`
+#### `sum()`
+
+Calculate the sum of an `array`. If the `items` is an array of object, you may pass the `path` as a second parameter.
+
+```js
+sum(items, path = null)
+```
+
+```js
+import { parseNumber } from '@risan/helpers';
+
+sum([1, 2, 3]); // 6
+sum([-1, -2, -3]) // -6
+sum([1.25, 2.25, 3.25]); // 6.75
+
+// It can parse number with string type.
+sum(['1.25', '2.25', '3.25']); // 6.75
+
+// Calculate array of object.
+sum([{ a: 1 }, { a: 2 }, { a: 3 }], 'a'); // 6
+
+// Use dot notation to access deeply nested object.
+sum([{ a: { b: 1 } }, { a: { b: 2 } }, { a: { b: 3 } }], 'a.b'); // 6
+```
+
+### Phone Number
+
+#### `formatPhone()`
 
 Format the given `value` as a US phone number.
 
@@ -704,7 +738,7 @@ formatPhone([1, 2]);         // null
 formatPhone({ foo: 'bar' }); // null
 ```
 
-### `parsePhone()`
+#### `parsePhone()`
 
 Parse the given `value` as a US phone number.
 
@@ -782,7 +816,9 @@ parsePhone([1, 2]);         // null
 parsePhone({ foo: 'bar' }); // null
 ```
 
-### `MONTH_NAMES`
+### Date
+
+#### `MONTH_NAMES`
 
 Array of month names in english.
 
@@ -792,7 +828,7 @@ import { MONTH_NAMES } from '@risan/helpers';
 console.log(MONTH_NAMES); // ["January", "February", ... "December"]
 ```
 
-### `SHORT_MONTH_NAMES`
+#### `SHORT_MONTH_NAMES`
 
 Array of short month names in english.
 
@@ -802,7 +838,7 @@ import { SHORT_MONTH_NAMES } from '@risan/helpers';
 console.log(SHORT_MONTH_NAMES); // ["Jan", "Feb", ... "Dec"]
 ```
 
-### `getCurrentYear()`
+#### `getCurrentYear()`
 
 Get the current year.
 
@@ -816,7 +852,7 @@ import { getCurrentYear } from '@risan/helpers';
 getCurrentYear() === (new Date()).getFullYear(); // true
 ```
 
-### `formatDate()`
+#### `formatDate()`
 
 Format the given `value` as a date. You can also pass the optional `outputPattern` and `inputPattern` (see `date-fns`'s [format string pattern](https://date-fns.org/v2.9.0/docs/format)). Also check the [Automatic Datetime Pattern Recognition](#automatic-datetime-pattern-recognition) section to see all possible patterns that can be recognized automatically.
 
@@ -855,7 +891,7 @@ formatDate('20200831', 'MM/dd/yyyy', 'yyyyMMdd'); // 08/31/2020
 formatDate('08/31/2020 8:15 AM', 'yyyy-MM-dd HH:mm:ss', 'MM/dd/yyyy h:mm a'); // 2020-08-31 08:15:00
 ```
 
-### `parseDate()`
+#### `parseDate()`
 
 Parse the given `value` to `Date` instance. You can also pass the optional `pattern` (see `date-fns`'s [format string pattern](https://date-fns.org/v2.9.0/docs/parse)). Note that if the `value` is a `number` type, it will be treated as milliseconds since the Unix epoch and the `pattern` parameter would be ignored completely.
 
@@ -917,7 +953,7 @@ parseDate('2020-08-32');                // null
 parseDate('08_32_2020', 'MM_dd_yyyy');  // null
 ```
 
-### `fromNow()`
+#### `fromNow()`
 
 Get the relative distance between the given `value` and now. You may pass the optional `pattern` parameter that will be used to parse the given `value` (see `date-fns`'s [format string pattern](https://date-fns.org/v2.9.0/docs/parse)). Also check the [Automatic Datetime Pattern Recognition](#automatic-datetime-pattern-recognition) section to see all possible patterns that can be recognized automatically.
 
