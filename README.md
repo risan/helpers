@@ -23,7 +23,7 @@ You can also use the CDN directly:
 
 ## API
 
-**Type Checking:**
+[**Type Checking:**](#type-checking)
 
 - [`isArray()`](#isArray)
 - [`isBoolean()`](#isBoolean)
@@ -35,7 +35,7 @@ You can also use the CDN directly:
 - [`isSet()`](#isSet)
 - [`isString()`](#isString)
 
-**Utility:**
+[**Utility:**](#utility)
 
 - [`coalesce()`](#coalesce)
 - [`dataGet()`](#dataGet)
@@ -44,7 +44,7 @@ You can also use the CDN directly:
 - [`isEmpty()`](#isEmpty)
 - [`snakeCaseKeys()`](#snakeCaseKeys)
 
-**Number:**
+[**Number:**](#number)
 
 - [`formatCurrency()`](#formatCurrency)
 - [`formatCurrencyCompact()`](#formatCurrencyCompact)
@@ -56,12 +56,12 @@ You can also use the CDN directly:
 - [`parseNumber()`](#parseNumber)
 - [`sum()`](#sum)
 
-**Phone Number:**
+[**Phone Number:**](#phone-number)
 
 - [`formatPhone`](#formatPhone)
 - [`parsePhone`](#parsePhone)
 
-**Date:**
+[**Date:**](#date)
 
 - [`MONTH_NAMES`](#month_names)
 - [`SHORT_MONTH_NAMES`](#short_month_names)
