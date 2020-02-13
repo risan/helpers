@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import { parsePhone } from '../src/index';
+import parsePhone from '../src/parsePhone';
 
 test('it returns null if the value is not a string or number', () => {
   expect(parsePhone(null)).toBeNull();

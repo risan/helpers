@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import { formatDecimalCompact } from '../src/index';
+import formatDecimalCompact from '../src/formatDecimalCompact';
 
 test('it can format an integer type', () => {
   expect(formatDecimalCompact(100)).toBe('100.00');

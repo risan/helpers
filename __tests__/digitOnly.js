@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import { digitOnly } from '../src/index';
+import digitOnly from '../src/digitOnly';
 
 test('it returns null if the value is not a string or number', () => {
   expect(digitOnly(null)).toBeNull();

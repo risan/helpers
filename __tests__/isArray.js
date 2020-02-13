@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import { isArray } from '../src/index';
+import isArray from '../src/isArray';
 
 test('it returns true for an array value', () => {
   expect(isArray([])).toBe(true);

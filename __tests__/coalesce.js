@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import { coalesce } from '../src/index';
+import coalesce from '../src/coalesce';
 
 test('it returns null for an empty value', () => {
   expect(coalesce(null)).toBeNull();

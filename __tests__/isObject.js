@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import { isObject } from '../src/index';
+import isObject from '../src/isObject';
 
 test('it returns true for a plain object', () => {
   expect(isObject({})).toBe(true);

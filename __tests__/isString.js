@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import { isString } from '../src/index';
+import isString from '../src/isString';
 
 test('it returns true for a string value', () => {
   expect(isString('')).toBe(true);

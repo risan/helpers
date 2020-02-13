@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import { isDate } from '../src/index';
+import isDate from '../src/isDate';
 
 test('it returns true for a date instance', () => {
   expect(isDate(new Date())).toBe(true);

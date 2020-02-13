@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import { snakeCaseKeys } from '../src/index';
+import snakeCaseKeys from '../src/snakeCaseKeys';
 
 test('it can transform property name to snake case', () => {
   expect(

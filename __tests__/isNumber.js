@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import { isNumber } from '../src/index';
+import isNumber from '../src/isNumber';
 
 test('it returns true for a number value', () => {
   expect(isNumber(0)).toBe(true);

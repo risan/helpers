@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import { formatDecimal } from '../src/index';
+import formatDecimal from '../src/formatDecimal';
 
 test('it can format an integer type', () => {
   expect(formatDecimal(0)).toBe('0.00');

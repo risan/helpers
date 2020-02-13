@@ -1,381 +1,59 @@
-import get from 'lodash/get';
-import has from 'lodash/has';
-import isPlainObject from 'lodash/isPlainObject';
-import mapKeys from 'lodash/mapKeys';
-import snakeCase from 'lodash/snakeCase';
-import dateFnsFormat from 'date-fns/format';
-import dateFnsParse from 'date-fns/parse';
-import dateFnsParseISO from 'date-fns/parseISO';
-import formatDistanceToNow from 'date-fns/formatDistanceToNow';
+export { default as coalesce } from './coalesce';
 
-export const isArray = value => Array.isArray(value);
+export { default as dataGet } from './dataGet';
 
-export const isBoolean = value => typeof value === 'boolean';
+export { default as dataHas } from './dataHas';
 
-export const isString = value => typeof value === 'string';
+export { default as digitOnly } from './digitOnly';
 
-export const isNumber = value =>
-  typeof value === 'number' && !Number.isNaN(value) && Number.isFinite(value);
+export { default as formatCurrency } from './formatCurrency';
 
-export const isDate = value =>
-  value instanceof Date && value.toString() !== 'Invalid Date';
+export { default as formatCurrencyCompact } from './formatCurrencyCompact';
 
-export const isFunction = value => typeof value === 'function';
+export { default as formatDate } from './formatDate';
 
-export const isMap = value => value instanceof Map;
+export { default as formatDecimal } from './formatDecimal';
 
-export const isSet = value => value instanceof Set;
+export { default as formatDecimalCompact } from './formatDecimalCompact';
 
-export const isObject = value => {
-  if (
-    value === null ||
-    isArray(value) ||
-    value instanceof Date ||
-    isSet(value) ||
-    isMap(value)
-  ) {
-    return false;
-  }
+export { default as formatPercent } from './formatPercent';
 
-  return typeof value === 'object';
-};
+export { default as formatPercentFrom } from './formatPercentFrom';
 
-export const isEmpty = value => {
-  if (value === undefined || value === null || Number.isNaN(value)) {
-    return true;
-  }
+export { default as formatPhone } from './formatPhone';
 
-  if (isBoolean(value) || isNumber(value)) {
-    return false;
-  }
+export { default as fromNow } from './fromNow';
 
-  if (isString(value)) {
-    return value.trim().length === 0;
-  }
+export { default as getRatio } from './getRatio';
 
-  if (isArray(value)) {
-    return value.length === 0;
-  }
+export { default as isArray } from './isArray';
 
-  if (isSet(value) || isMap(value)) {
-    return value.size === 0;
-  }
+export { default as isBoolean } from './isBoolean';
 
-  if (value instanceof Date) {
-    return !isDate(value);
-  }
+export { default as isDate } from './isDate';
 
-  if (isPlainObject(value)) {
-    return Object.keys(value).length === 0;
-  }
+export { default as isEmpty } from './isEmpty';
 
-  return false;
-};
+export { default as isFunction } from './isFunction';
 
-export const coalesce = (value, fallbackValue = null) =>
-  isEmpty(value) ? fallbackValue : value;
+export { default as isMap } from './isMap';
 
-export const dataGet = (obj, path, fallbackValue = undefined) =>
-  get(obj, path, fallbackValue);
+export { default as isNumber } from './isNumber';
 
-export const dataHas = (obj, path) => has(obj, path);
-
-export const digitOnly = value => {
-  const valueParsed = isNumber(value) ? `${value}` : value;
+export { default as isObject } from './isObject';
 
-  if (!isString(valueParsed)) {
-    return null;
-  }
+export { default as isSet } from './isSet';
 
-  return valueParsed.replace(/\D/g, '');
-};
+export { default as isString } from './isString';
 
-export const parsePhone = value => {
-  const valueParsed = isNumber(value) ? `${value}` : value;
+export { default as MONTH_NAMES } from './MONTH_NAMES';
 
-  if (!isString(valueParsed) || isEmpty(valueParsed)) {
-    return null;
-  }
+export { default as parseDate } from './parseDate';
 
-  const phonePattern = /^(\+?1[\s-.]?)?\(?(\d{3})\)?[\s-.]?(\d{3})[\s-.]?(\d{4})(\s?(x|ext|ext.|extension|#)\s?(\d+))?/gi;
+export { default as parseNumber } from './parseNumber';
 
-  const matched = phonePattern.exec(valueParsed);
-
-  return isArray(matched)
-    ? {
-        countryCode: matched[1] ? '+1' : null,
-        areaCode: matched[2],
-        centralOfficeCode: matched[3],
-        lineNumber: matched[4],
-        extension: matched[7] ? matched[7] : null,
-      }
-    : valueParsed;
-};
-
-export const formatPhone = value => {
-  const phone = parsePhone(value);
-
-  if (!isObject(phone)) {
-    return phone;
-  }
-
-  const prefix = phone.countryCode ? '+1 ' : '';
-  const subscriberNumber = `(${phone.areaCode}) ${phone.centralOfficeCode}-${phone.lineNumber}`;
-  const extension = phone.extension ? ` ext. ${phone.extension}` : '';
-
-  return `${prefix}${subscriberNumber}${extension}`;
-};
-
-export const snakeCaseKeys = obj =>
-  mapKeys(obj, (value, key) => snakeCase(key));
-
-export const parseNumber = (value, fallbackValue = null) => {
-  if (isEmpty(value)) {
-    return fallbackValue;
-  }
-
-  if (isBoolean(value)) {
-    return value === true ? 1 : 0;
-  }
-
-  if (isDate(value)) {
-    return value.getTime();
-  }
-
-  const valueParsed = isNumber(value) ? value : parseFloat(value, 10);
-
-  return Number.isNaN(valueParsed) ? fallbackValue : valueParsed;
-};
-
-export const formatDecimal = (
-  value,
-  fractionDigits = 2,
-  { locales = 'en-US', ...options } = {}
-) => {
-  const valueParsed = parseNumber(value);
-
-  if (valueParsed === null) {
-    return null;
-  }
-
-  return new Intl.NumberFormat(locales, {
-    style: 'decimal',
-    maximumFractionDigits: fractionDigits,
-    minimumFractionDigits: fractionDigits,
-    ...options,
-  }).format(valueParsed);
-};
-
-const parseNumberCompact = value => {
-  const valueParsed = parseNumber(value);
-
-  if (valueParsed === null) {
-    return { value: null, symbol: null };
-  }
-
-  const groups = [
-    { divider: 1, symbol: '' },
-    { divider: 1e3, symbol: 'K' },
-    { divider: 1e6, symbol: 'M' },
-    { divider: 1e9, symbol: 'B' },
-  ];
-
-  const matchedGroup = groups.reduce((matched, group) => {
-    if (Math.abs(valueParsed) >= group.divider) {
-      return group;
-    }
-
-    return matched;
-  }, groups[0]);
-
-  const valueCompact = valueParsed / matchedGroup.divider;
-
-  return { value: valueCompact, symbol: matchedGroup.symbol };
-};
-
-export const formatDecimalCompact = (
-  value,
-  fractionDigits = 2,
-  options = {}
-) => {
-  const { value: valueCompact, symbol } = parseNumberCompact(value);
-
-  if (valueCompact === null) {
-    return null;
-  }
-
-  return formatDecimal(valueCompact, fractionDigits, options) + symbol;
-};
-
-export const formatCurrency = (
-  value,
-  fractionDigits = 2,
-  { locales = 'en-US', currencyCode = 'USD', ...options } = {}
-) => {
-  const valueParsed = parseNumber(value);
-
-  if (valueParsed === null) {
-    return null;
-  }
-
-  return new Intl.NumberFormat(locales, {
-    style: 'currency',
-    currency: currencyCode,
-    maximumFractionDigits: fractionDigits,
-    minimumFractionDigits: fractionDigits,
-    ...options,
-  }).format(valueParsed);
-};
-
-export const formatCurrencyCompact = (
-  value,
-  fractionDigits = 2,
-  options = {}
-) => {
-  const { value: valueCompact, symbol } = parseNumberCompact(value);
-
-  if (valueCompact === null) {
-    return null;
-  }
-
-  return formatCurrency(valueCompact, fractionDigits, options) + symbol;
-};
-
-export const formatPercent = (value, fractionDigits = 2) => {
-  const valueParsed = parseNumber(value);
-
-  if (valueParsed === null) {
-    return null;
-  }
+export { default as parsePhone } from './parsePhone';
 
-  const percent = valueParsed * 100;
+export { default as SHORT_MONTH_NAMES } from './SHORT_MONTH_NAMES';
 
-  return `${formatDecimal(percent, fractionDigits)}%`;
-};
-
-export const getRatio = (value, total) => {
-  const valueParsed = parseNumber(value);
-
-  if (valueParsed === null) {
-    return null;
-  }
-
-  const totalParsed = parseNumber(total, 0);
-
-  if (totalParsed === 0) {
-    if (valueParsed === 0) {
-      return 0;
-    }
-
-    return valueParsed > 0 ? 1 : -1;
-  }
-
-  return valueParsed / totalParsed;
-};
-
-export const formatPercentFrom = (value, total, fractionDigits = 2) => {
-  const ratio = getRatio(value, total);
-
-  return formatPercent(ratio, fractionDigits);
-};
-
-export const MONTH_NAMES = [
-  'January',
-  'February',
-  'March',
-  'April',
-  'May',
-  'June',
-  'July',
-  'August',
-  'September',
-  'October',
-  'November',
-  'December',
-];
-
-export const SHORT_MONTH_NAMES = MONTH_NAMES.map(m => m.substring(0, 3));
-
-export const getCurrentYear = () => new Date().getFullYear();
-
-export const parseDate = (value, pattern = null) => {
-  if (isDate(value)) {
-    return value;
-  }
-
-  if (isEmpty(value)) {
-    return null;
-  }
-
-  if (isNumber(value)) {
-    return new Date(value);
-  }
-
-  if (!isString(value)) {
-    return null;
-  }
-
-  if (isString(pattern) && !isEmpty(pattern)) {
-    const date = dateFnsParse(value, pattern, new Date());
-
-    return isDate(date) ? date : null;
-  }
-
-  const isoDate = /^(\d{4}-\d{2}-\d{2})((T\d{2}:\d{2}:\d{2})(.\d+Z?)?([+-]\d{2}:\d{2})?)?$/;
-
-  if (isoDate.test(value)) {
-    const date = dateFnsParseISO(value);
-
-    return isDate(date) ? date : null;
-  }
-
-  const sqlDate = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}$/;
-
-  if (sqlDate.test(value)) {
-    const date = dateFnsParse(value, 'yyyy-MM-dd HH:mm:ss', new Date());
-
-    return isDate(date) ? date : null;
-  }
-
-  const sqlDateWithMs = /^\d{4}-\d{2}-\d{2} \d{2}:\d{2}:\d{2}.\d+$/;
-
-  if (sqlDateWithMs.test(value)) {
-    const date = dateFnsParse(value, 'yyyy-MM-dd HH:mm:ss.SSS', new Date());
-
-    return isDate(date) ? date : null;
-  }
-
-  const dotnetDate = /^\/Date\((\d+)([+-]\d{4})?\)\/$/;
-
-  const matches = value.match(dotnetDate);
-
-  if (isArray(matches) && matches.length === 3) {
-    return new Date(parseInt(matches[1], 10));
-  }
-
-  return null;
-};
-
-export const formatDate = (
-  value,
-  outputPattern = 'MM/dd/yyyy',
-  inputPattern = null
-) => {
-  const valueParsed = parseDate(value, inputPattern);
-
-  if (valueParsed === null) {
-    return null;
-  }
-
-  return dateFnsFormat(valueParsed, outputPattern);
-};
-
-export const fromNow = (value, pattern = null) => {
-  const valueParsed = parseDate(value, pattern);
-
-  if (valueParsed === null) {
-    return null;
-  }
-
-  return formatDistanceToNow(valueParsed, { addSuffix: true });
-};
+export { default as snakeCaseKeys } from './snakeCaseKeys';

@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import { isEmpty } from '../src/index';
+import isEmpty from '../src/isEmpty';
 
 test('it returns true for an empty value', () => {
   expect(isEmpty(null)).toBe(true);

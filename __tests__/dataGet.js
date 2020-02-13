@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import { dataGet } from '../src/index';
+import dataGet from '../src/dataGet';
 
 test('it can retrieve value by path', () => {
   expect(dataGet({ foo: 'bar' }, 'foo')).toBe('bar');
