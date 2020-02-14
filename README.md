@@ -1059,3 +1059,7 @@ import { states } from '@risan/helpers';
 // ]
 console.log(states);
 ```
+
+## License
+
+[MIT](https://github.com/risan/helpers/blob/master/LICENSE) © [Risan Bagja Pradana](https://risanb.com)
