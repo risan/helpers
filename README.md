@@ -77,6 +77,7 @@ You can also use the CDN directly:
 
 - [`monthNames`](#monthNames)
 - [`shortMonthNames`](#shortMonthNames)
+- [`states`](#states)
 
 ### Type Checking
 
@@ -1041,4 +1042,20 @@ Array of short month names in english.
 import { shortMonthNames } from '@risan/helpers';
 
 console.log(shortMonthNames); // ["Jan", "Feb", ... "Dec"]
+```
+
+#### `states`
+
+Array of US states.
+
+```js
+import { states } from '@risan/helpers';
+
+// [
+//   { abbr: 'AL', name: 'Alabama' },
+//   { abbr: 'AK', name: 'Alaska' },
+//   ...
+//   { abbr: 'PR', name: 'Puerto Rico' },
+// ]
+console.log(states);
 ```
