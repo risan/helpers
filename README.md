@@ -69,6 +69,12 @@ You can also use the CDN directly:
 - [`parseDate()`](#parseDate)
 - [`fromNow()`](#fromNow)
 
+[**Social:**](#social)
+
+- [`facebookSearchUrl()`](#facebookSearchUrl)
+- [`googleMapsSearchUrl()`](#googleMapsSearchUrl)
+- [`googleSearchUrl()`](#googleSearchUrl)
+
 ### Type Checking
 
 #### `isArray()`
@@ -983,4 +989,51 @@ fromNow(null);                        // null
 fromNow('foo');                       // null
 fromNow('2020-08-32');                // null
 fromNow('08_32_2020', 'MM_dd_yyyy');  // null
+```
+
+### Social
+
+#### `facebookSearchUrl()`
+
+Generate a Facebook search URL for the given `query`.
+
+```js
+facebookSearchUrl(query)
+```
+
+```js
+import { facebookSearchUrl } from '@risan/helpers';
+
+facebookSearchUrl('foo'); // https://www.facebook.com/search?q=foo
+facebookSearchUrl('foo bar'); // https://www.facebook.com/search?q=foo%20bar
+```
+
+#### `googleMapsSearchUrl()`
+
+Generate a Google Maps search URL for the given `query`.
+
+```js
+googleMapsSearchUrl(query)
+```
+
+```js
+import { googleMapsSearchUrl } from '@risan/helpers';
+
+googleMapsSearchUrl('foo'); // https://www.google.com/maps/search/foo
+googleMapsSearchUrl('foo bar'); // https://www.google.com/maps/search/foo%20bar
+```
+
+#### `googleSearchUrl()`
+
+Generate a Google search URL for the given `query`.
+
+```js
+googleSearchUrl(query)
+```
+
+```js
+import { googleSearchUrl } from '@risan/helpers';
+
+googleSearchUrl('foo'); // https://www.google.com/search?q=foo
+googleSearchUrl('foo bar'); // https://www.google.com/search?q=foo%20bar
 ```

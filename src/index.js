@@ -6,6 +6,8 @@ export { default as dataHas } from './dataHas';
 
 export { default as digitOnly } from './digitOnly';
 
+export { default as facebookSearchUrl } from './facebookSearchUrl';
+
 export { default as formatCurrency } from './formatCurrency';
 
 export { default as formatCurrencyCompact } from './formatCurrencyCompact';
@@ -25,6 +27,10 @@ export { default as formatPhone } from './formatPhone';
 export { default as fromNow } from './fromNow';
 
 export { default as getRatio } from './getRatio';
+
+export { default as googleMapsSearchUrl } from './googleMapsSearchUrl';
+
+export { default as googleSearchUrl } from './googleSearchUrl';
 
 export { default as isArray } from './isArray';
 
