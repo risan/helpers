@@ -17,7 +17,7 @@
     "url": "https://github.com/risan/is-empty/issues"
   },
   "main": "dist/helpers.cjs.js",
-  "browser": "dist/helpers.js",
+  "browser": "dist/helpers.umd.js",
   "module": "dist/helpers.esm.js",
   "engines": {
     "node": ">=10"

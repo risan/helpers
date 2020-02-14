@@ -16,13 +16,13 @@ module.exports = {
     },
     {
       name: 'helpers',
-      file: 'dist/helpers.js',
-      format: 'iife',
+      file: 'dist/helpers.umd.js',
+      format: 'umd',
     },
     {
       name: 'helpers',
-      file: 'dist/helpers.min.js',
-      format: 'iife',
+      file: 'dist/helpers.umd.min.js',
+      format: 'umd',
       plugins: [terser()],
     },
   ],

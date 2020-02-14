@@ -15,10 +15,10 @@ $ npm install @risan/helpers
 You can also use the CDN directly:
 
 ```html
-<script src="https://unpkg.com/@risan/helpers@latest/dist/helpers.js"></script>
+<script src="https://unpkg.com/@risan/helpers@latest/dist/helpers.umd.js"></script>
 
 <!-- Or the minified version -->
-<script src="https://unpkg.com/@risan/helpers@latest/dist/helpers.min.js"></script>
+<script src="https://unpkg.com/@risan/helpers@latest/dist/helpers.umd.min.js"></script>
 ```
 
 ## API
