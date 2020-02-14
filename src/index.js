@@ -52,7 +52,7 @@ export { default as isSet } from './isSet';
 
 export { default as isString } from './isString';
 
-export { default as MONTH_NAMES } from './MONTH_NAMES';
+export { default as monthNames } from './monthNames';
 
 export { default as parseDate } from './parseDate';
 
@@ -60,6 +60,6 @@ export { default as parseNumber } from './parseNumber';
 
 export { default as parsePhone } from './parsePhone';
 
-export { default as SHORT_MONTH_NAMES } from './SHORT_MONTH_NAMES';
+export { default as shortMonthNames } from './shortMonthNames';
 
 export { default as snakeCaseKeys } from './snakeCaseKeys';

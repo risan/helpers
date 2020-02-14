@@ -63,8 +63,6 @@ You can also use the CDN directly:
 
 [**Date:**](#date)
 
-- [`MONTH_NAMES`](#month_names)
-- [`SHORT_MONTH_NAMES`](#short_month_names)
 - [`formatDate()`](#formatDate)
 - [`parseDate()`](#parseDate)
 - [`fromNow()`](#fromNow)
@@ -74,6 +72,11 @@ You can also use the CDN directly:
 - [`facebookSearchUrl()`](#facebookSearchUrl)
 - [`googleMapsSearchUrl()`](#googleMapsSearchUrl)
 - [`googleSearchUrl()`](#googleSearchUrl)
+
+[**Constants:**](#constants)
+
+- [`monthNames`](#monthNames)
+- [`shortMonthNames`](#shortMonthNames)
 
 ### Type Checking
 
@@ -824,26 +827,6 @@ parsePhone({ foo: 'bar' }); // null
 
 ### Date
 
-#### `MONTH_NAMES`
-
-Array of month names in english.
-
-```js
-import { MONTH_NAMES } from '@risan/helpers';
-
-console.log(MONTH_NAMES); // ["January", "February", ... "December"]
-```
-
-#### `SHORT_MONTH_NAMES`
-
-Array of short month names in english.
-
-```js
-import { SHORT_MONTH_NAMES } from '@risan/helpers';
-
-console.log(SHORT_MONTH_NAMES); // ["Jan", "Feb", ... "Dec"]
-```
-
 #### `getCurrentYear()`
 
 Get the current year.
@@ -1036,4 +1019,26 @@ import { googleSearchUrl } from '@risan/helpers';
 
 googleSearchUrl('foo'); // https://www.google.com/search?q=foo
 googleSearchUrl('foo bar'); // https://www.google.com/search?q=foo%20bar
+```
+
+### Constants
+
+#### `monthNames`
+
+Array of month names in english.
+
+```js
+import { monthNames } from '@risan/helpers';
+
+console.log(monthNames); // ["January", "February", ... "December"]
+```
+
+#### `shortMonthNames`
+
+Array of short month names in english.
+
+```js
+import { shortMonthNames } from '@risan/helpers';
+
+console.log(shortMonthNames); // ["Jan", "Feb", ... "Dec"]
 ```
