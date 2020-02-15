@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import formatPercent from '../src/formatPercent';
+import { formatPercent } from '../src';
 
 test('it can format an integer type', () => {
   expect(formatPercent(0)).toBe('0.00%');

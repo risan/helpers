@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import isSet from '../src/isSet';
+import { isSet } from '../src';
 
 test('it returns true for a Set instance', () => {
   expect(isSet(new Set())).toBe(true);

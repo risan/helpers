@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import getRatio from '../src/getRatio';
+import { getRatio } from '../src';
 
 test('it can calculate the ratio', () => {
   expect(getRatio(0, 100)).toBe(0);

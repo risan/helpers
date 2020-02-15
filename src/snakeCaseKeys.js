@@ -1,4 +1,4 @@
-import mapKeys from 'lodash/mapKeys';
 import snakeCase from 'lodash/snakeCase';
+import mapKeys from './mapKeys';
 
-export default obj => mapKeys(obj, (value, key) => snakeCase(key));
+export default obj => mapKeys(obj, key => snakeCase(key));

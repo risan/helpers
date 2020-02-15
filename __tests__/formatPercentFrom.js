@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import formatPercentFrom from '../src/formatPercentFrom';
+import { formatPercentFrom } from '../src';
 
 test('it can calculate the percentage', () => {
   expect(formatPercentFrom(0, 100)).toBe('0.00%');

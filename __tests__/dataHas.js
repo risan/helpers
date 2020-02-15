@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import dataHas from '../src/dataHas';
+import { dataHas } from '../src';
 
 test('it returns true if path exist', () => {
   expect(dataHas({ foo: 'bar' }, 'foo')).toBe(true);

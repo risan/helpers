@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import sum from '../src/sum';
+import { sum } from '../src';
 
 test('it can sum an array of integer', () => {
   expect(sum([1, 2, 3])).toBe(6);

@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import formatDate from '../src/formatDate';
+import { formatDate } from '../src';
 
 test('it can format a valid date value', () => {
   expect(formatDate(new Date(2020, 7, 31))).toBe('08/31/2020');

@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import fromNow from '../src/fromNow';
+import { fromNow } from '../src';
 
 test('it can get the distance from the past value', () => {
   expect(fromNow(new Date(Date.now() - 1 * 1000))).toMatch(/a minute ago/i);

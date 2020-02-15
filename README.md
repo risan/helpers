@@ -40,8 +40,11 @@ You can also use the CDN directly:
 - [`coalesce()`](#coalesce)
 - [`dataGet()`](#dataGet)
 - [`dataHas()`](#dataHas)
+- [`dataSet()`](#dataSet)
+- [`dataRemove()`](#dataRemove)
 - [`digitOnly()`](#digitOnly)
 - [`isEmpty()`](#isEmpty)
+- [`mapKeys()`](#mapKeys)
 - [`snakeCaseKeys()`](#snakeCaseKeys)
 
 [**Number:**](#number)
@@ -378,6 +381,39 @@ dataHas({ foo: undefined }, 'foo');              // true
 dataHas({ foo: 'bar' }, 'baz'); // false
 ```
 
+#### `dataSet()`
+
+Sets the `value` at `path` of `obj`. It uses Lodash [`set` function](https://lodash.com/docs/4.17.15#set) under the hood.
+
+```js
+dataSet(obj, path, value)
+```
+
+```js
+import { dataSet } from '@risan/helpers';
+
+dataSet({ foo: 1 }, 'bar', 2); // { foo: 1, bar: 2 }
+dataSet({ foo: 1 }, 'bar.baz', 2); // { foo: 1, bar: { baz: 2 } }
+```
+
+#### `dataRemove()`
+
+Removes the property at `path` of `obj`. It uses Lodash [`unset` function](https://lodash.com/docs/4.17.15#unset) under the hood.
+
+```js
+dataSet(obj, path, value)
+```
+
+```js
+import { dataRemove } from '@risan/helpers';
+
+let a = { foo: 1, bar: 2};
+dataRemove(a, 'bar'); // returns true; a = { foo: 1}
+
+let b = { foo: 1, bar: { baz: 2 } };
+dataRemove(a, 'bar.baz', 2); // returns true; b = { foo: 1, bar: {} }
+```
+
 #### `digitOnly()`
 
 Retruns a `string` where all non-digit characters are removed from the given `value`. It returns `null` if the given `value` is not `number` or `string` type.
@@ -442,6 +478,37 @@ isEmpty({ foo: 'bar' });  // false
 isEmpty(false);     // false
 isEmpty(0);         // false
 isEmpty(Infinity);  // false
+```
+
+#### `lowerCaseKeys()`
+
+Returns a new object where all its property names are transformed into lower case.
+
+```js
+lowerCaseKeys(obj)
+```
+
+```js
+import { lowerCaseKeys } from '@risan/helpers';
+
+lowerCaseKeys({ USER_ID: 123, FIRST_NAME: 'foo' }); // { user_id: 123, first_name: 'foo' }
+```
+
+#### `mapKeys()`
+
+Returns a new object where all its property names are transformed by the given `callback` function. It uses Lodash [`mapKeys` function](https://lodash.com/docs/4.17.15#mapKeys) under the hood, but the callback parameters are swapped.
+
+```js
+mapKeys(obj, callback(key, value))
+```
+
+```js
+import { mapKeys } from '@risan/helpers';
+
+mapKeys(
+  { id: 123, name: 'foo' },
+  (key, value) => `${key.toUpperCase()}_${value}`
+); // { ID_123: 123, NAME_foo: 'foo' }
 ```
 
 #### `snakeCaseKeys()`

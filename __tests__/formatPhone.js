@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import formatPhone from '../src/formatPhone';
+import { formatPhone } from '../src';
 
 test('it returns null if the value is not a string or number', () => {
   expect(formatPhone(null)).toBeNull();

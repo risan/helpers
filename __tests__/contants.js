@@ -1,7 +1,5 @@
 /* global expect:false, test:false */
-import monthNames from '../src/monthNames';
-import shortMonthNames from '../src/shortMonthNames';
-import states from '../src/states';
+import { monthNames, shortMonthNames, states } from '../src';
 
 test('there are twelve months', () => {
   expect(monthNames).toHaveLength(12);

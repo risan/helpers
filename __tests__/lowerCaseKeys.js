@@ -1,12 +1,12 @@
 /* global expect:false, test:false */
-import { snakeCaseKeys } from '../src';
+import { lowerCaseKeys } from '../src';
 
-test('it can transform property name to snake case', () => {
+test('it can transform property name to lower case', () => {
   expect(
-    snakeCaseKeys({
-      userId: 12,
+    lowerCaseKeys({
+      USER_ID: 12,
       USER_ADDRESS: 'foo',
-      'user-age': 30,
+      USER_AGE: 30,
     })
   ).toStrictEqual({
     user_id: 12,

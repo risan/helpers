@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import formatCurrency from '../src/formatCurrency';
+import { formatCurrency } from '../src';
 
 test('it can format an integer type', () => {
   expect(formatCurrency(0)).toBe('$0.00');

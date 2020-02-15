@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import isMap from '../src/isMap';
+import { isMap } from '../src';
 
 test('it returns true for a Map instance', () => {
   expect(isMap(new Map())).toBe(true);

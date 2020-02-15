@@ -1,6 +1,6 @@
 /* global expect:false, test:false */
 /* eslint func-names: 0 */
-import isFunction from '../src/isFunction';
+import { isFunction } from '../src';
 
 test('it returns true for a string value', () => {
   expect(isFunction(function() {})).toBe(true);

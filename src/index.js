@@ -4,6 +4,10 @@ export { default as dataGet } from './dataGet';
 
 export { default as dataHas } from './dataHas';
 
+export { default as dataSet } from './dataSet';
+
+export { default as dataRemove } from './dataRemove';
+
 export { default as digitOnly } from './digitOnly';
 
 export { default as facebookSearchUrl } from './facebookSearchUrl';
@@ -52,6 +56,10 @@ export { default as isSet } from './isSet';
 
 export { default as isString } from './isString';
 
+export { default as lowerCaseKeys } from './lowerCaseKeys';
+
+export { default as mapKeys } from './mapKeys';
+
 export { default as monthNames } from './monthNames';
 
 export { default as parseDate } from './parseDate';
@@ -65,3 +73,5 @@ export { default as shortMonthNames } from './shortMonthNames';
 export { default as snakeCaseKeys } from './snakeCaseKeys';
 
 export { default as states } from './states';
+
+export { default as sum } from './sum';

@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import facebookSearchUrl from '../src/facebookSearchUrl';
+import { facebookSearchUrl } from '../src';
 
 test('it can generate facebook search url', () => {
   expect(facebookSearchUrl('foo')).toBe(

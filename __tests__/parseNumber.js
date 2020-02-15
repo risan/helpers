@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import parseNumber from '../src/parseNumber';
+import { parseNumber } from '../src';
 
 test('it can parse an integer type', () => {
   expect(parseNumber(0)).toBe(0);

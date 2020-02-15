@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import parseDate from '../src/parseDate';
+import { parseDate } from '../src';
 
 test('it returns the value itself if it is a date instance', () => {
   const date = new Date();

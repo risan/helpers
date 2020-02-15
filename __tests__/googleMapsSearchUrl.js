@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import googleMapsSearchUrl from '../src/googleMapsSearchUrl';
+import { googleMapsSearchUrl } from '../src';
 
 test('it can generate google maps search url', () => {
   expect(googleMapsSearchUrl('foo')).toBe(

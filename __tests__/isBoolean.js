@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import isBoolean from '../src/isBoolean';
+import { isBoolean } from '../src';
 
 test('it returns true for a boolean value', () => {
   expect(isBoolean(true)).toBe(true);

@@ -1,5 +1,5 @@
 /* global expect:false, test:false */
-import formatCurrencyCompact from '../src/formatCurrencyCompact';
+import { formatCurrencyCompact } from '../src';
 
 test('it can format an integer type', () => {
   expect(formatCurrencyCompact(100)).toBe('$100.00');
