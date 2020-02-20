@@ -32,6 +32,7 @@ You can also use the CDN directly:
 - [`isMap()`](#isMap)
 - [`isNumber()`](#isNumber)
 - [`isObject()`](#isObject)
+- [`isPlainObject()`](#isPlainObject)
 - [`isSet()`](#isSet)
 - [`isString()`](#isString)
 
@@ -253,6 +254,39 @@ isObject([1, 2]);     // false
 isObject(new Date()); // false
 isObject(new Map());  // false
 isObject(new Set());  // false
+```
+
+#### `isPlainObject()`
+
+Check if the given `value` is a plain object. It uses Lodash's [`isPlainObject()`](https://lodash.com/docs/4.17.15#isPlainObject) under the hood.
+
+```js
+isPlainObject(value)
+```
+
+```js
+import { isPlainObject } from '@risan/helpers';
+
+isPlainObject({});                   // true
+isPlainObject({ foo: 'bar' });       // true
+isPlainObject(Object.create(null));  // true
+
+function Person {};
+isPlainObject(new Person()); // false
+
+class Animal {};
+isPlainObject(new Animal()); // false
+
+isPlainObject(123);    // false
+isPlainObject('foo');  // false
+isPlainObject(true);   // false
+
+// null, array, Date, Map, and Set return false.
+isPlainObject(null);       // false
+isPlainObject([1, 2]);     // false
+isPlainObject(new Date()); // false
+isPlainObject(new Map());  // false
+isPlainObject(new Set());  // false
 ```
 
 #### `isSet()`
