@@ -3,7 +3,7 @@
 import { isFunction } from '../src';
 
 test('it returns true for a string value', () => {
-  expect(isFunction(function() {})).toBe(true);
+  expect(isFunction(function () {})).toBe(true);
   expect(isFunction(() => {})).toBe(true);
   expect(isFunction(Number.isNaN)).toBe(true);
 });

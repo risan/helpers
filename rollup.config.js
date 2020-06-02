@@ -1,4 +1,4 @@
-import babel from 'rollup-plugin-babel';
+import babel from '@rollup/plugin-babel';
 import commonjs from '@rollup/plugin-commonjs';
 import resolve from '@rollup/plugin-node-resolve';
 import { terser } from 'rollup-plugin-terser';
@@ -8,7 +8,7 @@ module.exports = {
   output: [
     {
       file: 'dist/helpers.esm.js',
-      format: 'esm',
+      format: 'es',
     },
     {
       file: 'dist/helpers.cjs.js',
@@ -31,6 +31,7 @@ module.exports = {
     commonjs(),
     babel({
       exclude: 'node_modules/**',
+      babelHelpers: 'bundled',
     }),
   ],
 };
